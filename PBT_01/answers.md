@@ -51,6 +51,7 @@ Thẻ `<div>` là một thẻ hoàn toàn vô nghĩa (non-semantic). Các công 
     </article>
 </main>
 <footer>© 2026 ShopTLU</footer>
+```
 Câu A3 — Khối (Block) vs Nội tuyến (Inline)
 Nguồn tham chiếu: Kiến thức nền tảng HTML
 
@@ -88,4 +89,5 @@ Phá vỡ cấu trúc ngữ nghĩa (Semantics & Accessibility): Bảng sinh ra c
 Khó bảo trì và gây "Tag Soup" (Code phình to): Để tạo một giao diện có nhiều thành phần, bạn phải lồng ghép vô số các thẻ <table>, <tr>, <td> vào nhau. Code sẽ thụt lùi vào rất sâu, rối rắm, cực kỳ khó đọc, khó sửa lỗi và làm tăng kích thước file HTML một cách vô ích.
 
 Mất khả năng Responsive (Thiết kế thích ứng): Đây là điểm yếu chí mạng trong thời đại Mobile-first. Bảng rất khó tự động bẻ gãy dòng hay chuyển từ xếp ngang sang xếp dọc khi xem trên điện thoại. Trong khi đó, các kỹ thuật CSS hiện đại (như Flexbox hay CSS Grid) giải quyết việc này rất dễ dàng và gọn gàng.
+
 
