@@ -16,12 +16,7 @@
 
 **2. Tab Network trong DevTools:**
 
-* **Chức năng:** Tab Network hiển thị toàn bộ quá trình trình duyệt giao tiếp với máy chủ. Nó hiển thị mọi tài nguyên được tải về (HTML, CSS, JS, API, Ảnh), dung lượng từng tệp, thời gian tải và các mã lỗi.
-* Hình ảnh đánh dấu mã trạng thái, thời gian tải và file CSS:
 *(Ảnh minh họa đã được lưu trong thư mục screenshots)*
-![Network Tab](screenshots/network.png)
-
----
 
 ## Câu A2 — HTML ngữ nghĩa (Semantic HTML)
 *Nguồn tham chiếu: Chương 04 - Semantic HTML*
