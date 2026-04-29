@@ -59,22 +59,27 @@ Thẻ `<div>` là một thẻ hoàn toàn vô nghĩa (non-semantic). Việc lạ
 ## Câu A3 — Khối (Block) vs Nội tuyến (Inline)
 *Nguồn tham chiếu: Kiến thức nền tảng HTML*
 
-**1. Mô phỏng cấu trúc hiển thị trên trình duyệt:**
+**1. Mô phỏng cấu trúc hiển thị trên trình duyệt (ASCII Art):**
 
-[Hộp 1]
-
+```text
++--------------------------------------------------------------------+
+| Hộp 1                                                              |
++--------------------------------------------------------------------+
 Text AText B
 
-[Hộp 2]
-
++--------------------------------------------------------------------+
+| Hộp 2                                                              |
++--------------------------------------------------------------------+
 Text C**Text D**
 
-[Hộp 3]
-
++--------------------------------------------------------------------+
+| Hộp 3                                                              |
++--------------------------------------------------------------------+
 **2. Giải thích chuyên sâu về cơ chế hiển thị:**
 
-* **Phần tử Block-level (Thẻ `<div>`):** Đặc tính của Block là luôn chiếm **100% chiều rộng** của phần tử cha chứa nó và **ép buộc bắt đầu ở một dòng mới**. Do đó, Hộp 1, Hộp 2 và Hộp 3 xếp chồng lên nhau theo chiều dọc.
-* **Phần tử Inline-level (Thẻ `<span>`, `<strong>`):** Đặc tính của Inline là **chỉ chiếm không gian vừa đúng bằng chiều rộng của nội dung**. Nó không gây ngắt dòng mà sẽ xếp nối tiếp nhau trên cùng một dòng ngang. Đó là lý do "Text A" đứng dính liền với "Text B".
+**Phần tử Block-level (Thẻ <div>): Trong mô phỏng trên, các thẻ <div> (Hộp 1, 2, 3) tạo ra các khối hình chữ nhật lớn. Đặc tính của Block là luôn chiếm **100% chiều rộng** của phần tử cha chứa nó và **ép buộc bắt đầu ở một dòng mới**. Do đó, chúng đẩy mọi thứ khác xuống dưới và xếp chồng lên nhau theo chiều dọc.**
+
+**Phần tử Inline-level (Thẻ <span>, <strong>): Đặc tính của Inline là chỉ **chiếm không gian vừa đúng bằng chiều rộng của nội dung chữ** bên trong nó. Nó không gây ngắt dòng mà sẽ xếp nối tiếp nhau trên cùng một dòng ngang. Đó là lý do "Text A" đứng dính liền với "Text B", và "Text C" đứng liền với chữ in đậm **"Text D"**.**
 
 ---
 
