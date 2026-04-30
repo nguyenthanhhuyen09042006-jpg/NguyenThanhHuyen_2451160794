@@ -54,3 +54,60 @@
 *   **Cách 2 (Dùng `<figure>` + `<figcaption>`):** Dùng khi khối hình ảnh mang ý nghĩa trọn vẹn, có tính chất độc lập với khối văn bản xung quanh và bắt buộc phải đi kèm đoạn mô tả (caption) để giải thích ngữ nghĩa.
     * *Ví dụ 1:* Bức ảnh chi tiết một sản phẩm E-commerce, bên dưới kèm chú thích tên sản phẩm và giá tiền.
     * *Ví dụ 2:* Một biểu đồ số liệu kỹ thuật hoặc ảnh báo chí cần có ghi chú nguồn gốc tác giả ở ngay bên dưới.
+## PHẦN C — PHÂN TÍCH & SUY LUẬN
+
+### Câu C1 — Debug Form
+Dưới đây là 8 lỗi của đoạn code form và cách khắc phục để đạt chuẩn HTML5, Accessibility và Best Practices:
+
+**Lỗi 1: Dòng 1 — Thẻ `<form>` thiếu thuộc tính gửi dữ liệu.**
+*   **Chi tiết:** Không có `action` (nơi nhận dữ liệu) và `method` (phương thức gửi).
+*   **Sửa:** `<form action="#" method="POST">`
+
+**Lỗi 2: Dòng 2 — Input "Tên" thiếu `<label for="...">` và thiếu thuộc tính `name`.**
+*   **Chi tiết:** Viết chữ "Tên:" rỗng trơ trọi ra ngoài vi phạm accessibility, và input không có `name` thì không thể gửi dữ liệu lên server.
+*   **Sửa:** `<label for="firstName">Tên:</label> <input type="text" id="firstName" name="firstName" required>`
+
+**Lỗi 3: Dòng 4 — Input "Email" lạm dụng placeholder làm nhãn.**
+*   **Chi tiết:** Không có thẻ `<label>`, điều này gây khó khăn cho người dùng dùng Screen Reader. Thiếu `name`.
+*   **Sửa:** `<label for="email">Email:</label> <input type="email" id="email" name="email" placeholder="Email của bạn" required>`
+
+**Lỗi 4: Dòng 6, 7 — Input "Mật khẩu" thiếu validation an toàn và thiếu `name`.**
+*   **Chi tiết:** Khai báo password nhưng không có giới hạn độ dài `minlength` hoặc `pattern`, và cũng thiếu `<label>`.
+*   **Sửa:** `<label for="pwd">Mật khẩu:</label> <input type="password" id="pwd" name="pwd" minlength="8" placeholder="Mật khẩu">`
+
+**Lỗi 5: Dòng 9 — Input "Phone" dùng sai loại type.**
+*   **Chi tiết:** Số điện thoại nên dùng `type="tel"` thay vì `type="text"` để điện thoại hiển thị bàn phím số, đồng thời thiếu `<label>`.
+*   **Sửa:** `<label for="phone">Phone:</label> <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" value="0901234567">`
+
+**Lỗi 6: Dòng 11 — Thẻ `<select>` không có định danh.**
+*   **Chi tiết:** Không có `id` để liên kết với `<label>`, và quan trọng nhất là không có `name`.
+*   **Sửa:** `<label for="city">Thành phố:</label> <select id="city" name="city">`
+
+**Lỗi 7: Dòng 12, 13 — Thẻ `<option>` thiếu giá trị thực tế.**
+*   **Chi tiết:** Thiếu thuộc tính `value`. Khi submit, server sẽ không biết mã chính xác của thành phố là gì.
+*   **Sửa:** `<option value="HN">Hà Nội</option> <option value="HCM">TP.HCM</option>`
+
+**Lỗi 8: Dòng 16 đến 18 — Có `<label>` nhưng lại thiếu thẻ `<input>` (Checkbox).**
+*   **Chi tiết:** Người dùng có dòng chữ "Tôi đồng ý" nhưng hoàn toàn không có ô vuông nào để thực sự click vào (lỗi logic nghiêm trọng).
+*   **Sửa:** `<label for="terms"><input type="checkbox" id="terms" name="terms" required> Tôi đồng ý điều khoản</label>`
+
+---
+
+### Câu C2 — Thiết kế chiến lược Validation
+
+**1. Viết `pattern` regex:**
+*   **CMND/CCCD (Đúng 12 số):** `pattern="[0-9]{12}"`
+*   **Số tài khoản (10-15 số):** `pattern="[0-9]{10,15}"`
+
+**2. HTML5 validation đủ an toàn cho ứng dụng ngân hàng chưa? Tại sao?**
+*   **Hoàn toàn KHÔNG đủ an toàn.** HTML5 Validation chỉ là lớp phòng thủ ở mặt tiền (Client-side/Frontend) để tăng trải nghiệm người dùng (UX) - giúp báo lỗi nhanh mà không cần tải lại trang.
+*   *Lý do:* Kẻ xấu có thể dễ dàng "vượt rào" (bypass) lớp validation này bằng cách: Mở F12 (DevTools) xóa thuộc tính `required` hay `pattern` đi, tắt JavaScript, hoặc dùng các công cụ như Postman/cURL để gửi request trực tiếp thẳng vào Backend mà không thèm qua giao diện HTML.
+
+**3. 3 loại validation mà HTML5 KHÔNG THỂ làm được (Phải dùng JS hoặc Backend):**
+*   **So sánh hai trường dữ liệu:** Ví dụ như kiểm tra ô "Nhập lại mật khẩu" có trùng khớp 100% với ô "Mật khẩu" ở trên hay không.
+*   **Kiểm tra dữ liệu tồn tại/Trùng lặp:** Ví dụ kiểm tra xem Email hoặc Username này đã có ai đăng ký trong Cơ sở dữ liệu (Database) của hệ thống chưa.
+*   **Kiểm tra logic nghiệp vụ phức tạp/Động:** Ví dụ kiểm tra xem số dư tài khoản hiện tại có đủ để chuyển khoản không, hoặc tính toán xem người dùng đã đủ 18 tuổi tính đến ngày hôm nay chưa (dựa trên ô nhập ngày sinh).
+
+**4. 2 rủi ro bảo mật nếu chỉ validate trên Frontend mà không validate Backend:**
+*   **Bị tấn công phá hoại cơ sở dữ liệu (SQL Injection / XSS):** Hacker gửi những đoạn mã độc lạ (thay vì nhập số điện thoại thì nhập câu lệnh xóa Database) đi xuyên qua Frontend. Nếu Backend không kiểm tra lại mà lưu thẳng vào hệ thống, dữ liệu sẽ bị phá hủy hoặc lộ lọt.
+*   **Sai lệch logic kinh doanh (Data Corruption):** Hacker có thể sửa đổi code HTML để đổi giá tiền đơn hàng thành số âm (VD: -50.000đ) hoặc số lượng sản phẩm sai quy định. Nếu Backend nhắm mắt tin tưởng, hệ thống sẽ xử lý sai, gây thất thoát tài sản nghiêm trọng cho ngân hàng hoặc doanh nghiệp.
