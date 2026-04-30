@@ -132,9 +132,9 @@ Danh sách 10 lỗi đã được tìm và sửa trong file `debug.html`:
 * Bảng hiển thị: Thông tin chi tiết cấu hình của một sản phẩm (ví dụ: kích thước, trọng lượng, nhà xuất bản).
 * Cấu trúc: Tiki **có sử dụng `<tbody>`** để chứa dữ liệu các hàng, nhưng **không sử dụng `<thead>`** vì bảng này thường là dạng liệt kê key-value ngang, không có dòng tiêu đề cột.
 
-**3. Phân tích `<form>` (Thanh tìm kiếm Tiki):**
-* Thẻ form có các thuộc tính: `action="/search"` (để chuyển hướng đến trang tìm kiếm) và không thấy khai báo `method` rõ ràng, nên mặc định là `method="get"`.
-* Loại đầu vào (input type): Sử dụng `<input type="text">` để người dùng gõ từ khóa.
+**3. Phân tích thanh tìm kiếm (Tìm thẻ `<form>`):**
+* Qua quá trình Inspect thực tế (như trong ảnh chụp màn hình), em phát hiện ra trang web Tiki hiện tại **không sử dụng thẻ `<form>` ngữ nghĩa** cho thanh tìm kiếm chính.
+* Thay vào đó, họ sử dụng cấu trúc các khối `<div>` lồng nhau để tạo giao diện (chứa thẻ `<input type="text">` để nhập từ khóa và thẻ `<button>` để submit). Có thể Tiki sử dụng JavaScript/React để bắt sự kiện người dùng nhấn Enter hoặc click nút, sau đó gọi API tìm kiếm trực tiếp chứ không dùng cơ chế submit form truyền thống của HTML. Đây là một điểm thú vị về cách các hệ thống lớn tối ưu Single Page Application (SPA).
 
 *(Lưu ý: Các ảnh chụp minh họa đã được lưu trong thư mục `screenshots/`)*
 # PHẦN C — SUY LUẬN
