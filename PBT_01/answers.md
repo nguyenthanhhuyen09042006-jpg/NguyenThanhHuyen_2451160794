@@ -98,6 +98,45 @@ Text C**Text D**
 1. **Phá vỡ cấu trúc ngữ nghĩa (Semantics & Accessibility):** Bảng sinh ra chỉ để biểu diễn dữ liệu dạng ma trận. Dùng bảng để chia layout khiến trình đọc màn hình đọc sai thứ tự nội dung.
 2. **Khó bảo trì và gây "Tag Soup":** Lồng ghép vô số các thẻ `<table>`, `<tr>`, `<td>` vào nhau khiến code phình to, rối rắm và cực kỳ khó sửa lỗi.
 3. **Mất khả năng Responsive (Thiết kế thích ứng):** Bảng rất cứng nhắc, khó tự động bẻ gãy dòng hay chuyển từ ngang sang dọc khi xem trên điện thoại. Các kỹ thuật hiện đại như Flexbox hoặc CSS Grid xử lý việc này tốt hơn rất nhiều.
+# PHẦN B — THỰC HÀNH CODE
+
+## Bài B3 — Gỡ lỗi HTML
+Danh sách 10 lỗi đã được tìm và sửa trong file `debug.html`:
+
+1. **Dòng 1:** Thiếu chữ `html` trong `<!DOCTYPE>` -> Cú pháp sai. Sửa thành `<!DOCTYPE html>`.
+2. **Dòng 1:** Thẻ `<html>` thiếu thuộc tính ngôn ngữ `lang="vi"`.
+3. **Dòng 2:** Thẻ `<title>` chưa có thẻ đóng `</title>`.
+4. **Dòng 3:** Sai chuẩn khai báo ký tự `<meta charset="utf8">` -> Sửa thành chuẩn `<meta charset="UTF-8">`.
+5. **Dòng 5:** Viết sai thẻ đóng `<h1>` thành `<h1>` (thiếu dấu gạch chéo) -> Sửa thành `</h1>`.
+6. **Dòng 9:** Viết sai thẻ đóng `<a>` thành `<a>` -> Sửa thành `</a>`.
+7. **Dòng 16:** Thẻ `<img>` thiếu thuộc tính `alt` (lỗi ngữ nghĩa/trợ năng) và giá trị của `src` thiếu dấu ngoặc kép -> Sửa thành `<img src="iphone.jpg" alt="iPhone 16 Pro">`.
+8. **Dòng 18:** Lỗi thẻ lồng nhau chéo (Nesting Error) `<b>` mở trong `<p>` nhưng lại đóng ngoài `<p>`. -> Đảo lại thành `<b>25.990.000đ</b></p>`.
+9. **Dòng 22:** Bảng `<table>` thiếu vùng chứa cấu trúc ngữ nghĩa `<thead>` và `<tbody>`.
+10. **Dòng 35:** Một trang web có tới 2 thẻ `<main>` (lỗi nghiêm trọng vì `<main>` chỉ được có 1) -> Đổi thẻ `<main>` thứ hai thành `<aside>`.
+11. **Dòng 40:** Thẻ `<p>` chưa có thẻ đóng `</p>`.
+
+---
+
+## Bài B4 — Phân tích trang web thật (tiki.vn)
+
+**1. Tab Elements (HTML5 Semantic):**
+* **3 thẻ Semantic đúng:**
+    * `<header>`: Nằm ở đầu trang, chứa logo Tiki và thanh tìm kiếm.
+    * `<main>`: Chứa toàn bộ nội dung hiển thị sản phẩm chính.
+    * `<footer>`: Nằm ở cuối cùng, chứa các thông tin liên hệ và chính sách chăm sóc khách hàng.
+* **2 thẻ dùng sai ngữ nghĩa:**
+    * Lạm dụng `<div>` có gắn sự kiện `onClick` để làm nút bấm thay vì dùng thẻ `<button>`.
+    * Lạm dụng `<span>` thay thế cho thẻ tiêu đề `<h2>` ở một số tên danh mục khối.
+
+**2. Phân tích `<table>` (Bảng thông số kỹ thuật):**
+* Bảng hiển thị: Thông tin chi tiết cấu hình của một sản phẩm (ví dụ: kích thước, trọng lượng, nhà xuất bản).
+* Cấu trúc: Tiki **có sử dụng `<tbody>`** để chứa dữ liệu các hàng, nhưng **không sử dụng `<thead>`** vì bảng này thường là dạng liệt kê key-value ngang, không có dòng tiêu đề cột.
+
+**3. Phân tích `<form>` (Thanh tìm kiếm Tiki):**
+* Thẻ form có các thuộc tính: `action="/search"` (để chuyển hướng đến trang tìm kiếm) và không thấy khai báo `method` rõ ràng, nên mặc định là `method="get"`.
+* Loại đầu vào (input type): Sử dụng `<input type="text">` để người dùng gõ từ khóa.
+
+*(Lưu ý: Các ảnh chụp minh họa đã được lưu trong thư mục `screenshots/`)*
 # PHẦN C — SUY LUẬN
 
 ## Câu C1 — Thiết kế cấu trúc
