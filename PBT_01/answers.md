@@ -128,9 +128,10 @@ Danh sách 10 lỗi đã được tìm và sửa trong file `debug.html`:
     * Lạm dụng `<div>` có gắn sự kiện `onClick` để làm nút bấm thay vì dùng thẻ `<button>`.
     * Lạm dụng `<span>` thay thế cho thẻ tiêu đề `<h2>` ở một số tên danh mục khối.
 
-**2. Phân tích `<table>` (Bảng thông số kỹ thuật):**
-* Bảng hiển thị: Thông tin chi tiết cấu hình của một sản phẩm (ví dụ: kích thước, trọng lượng, nhà xuất bản).
-* Cấu trúc: Tiki **có sử dụng `<tbody>`** để chứa dữ liệu các hàng, nhưng **không sử dụng `<thead>`** vì bảng này thường là dạng liệt kê key-value ngang, không có dòng tiêu đề cột.
+**2. Phân tích Bảng thông số kỹ thuật (Thực tế không dùng `<table>`):**
+* Qua việc dùng công cụ Inspect để phân tích phần "Thông tin chi tiết" của một sản phẩm trên Tiki, em phát hiện ra hệ thống **không hề sử dụng thẻ `<table>`** ngữ nghĩa.
+* Thay vào đó, lập trình viên sử dụng cấu trúc các thẻ `<div>` lồng nhau kết hợp với thẻ `<span>` để chứa văn bản. Khung lưới của bảng được tạo ra hoàn toàn bằng **CSS Grid** (`style="display: grid; grid-template-columns: 55% 45%;"`).
+* **Đánh giá:** Cách làm này hy sinh một phần tính ngữ nghĩa (Semantic HTML) của dữ liệu dạng bảng, nhưng bù lại mang tới khả năng tuỳ biến giao diện cực kỳ mạnh mẽ. `<div>` kết hợp Flex/Grid giúp hệ thống dễ dàng cấu trúc lại bố cục khi người dùng lướt web trên điện thoại (Responsive Design) - điều mà thẻ `<table>` truyền thống xử lý rất cồng kềnh.
 
 **3. Phân tích thanh tìm kiếm (Tìm thẻ `<form>`):**
 * Qua quá trình Inspect thực tế (như trong ảnh chụp màn hình), em phát hiện ra trang web Tiki hiện tại **không sử dụng thẻ `<form>` ngữ nghĩa** cho thanh tìm kiếm chính.
