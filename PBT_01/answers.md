@@ -98,3 +98,112 @@ Text C**Text D**
 1. **Phá vỡ cấu trúc ngữ nghĩa (Semantics & Accessibility):** Bảng sinh ra chỉ để biểu diễn dữ liệu dạng ma trận. Dùng bảng để chia layout khiến trình đọc màn hình đọc sai thứ tự nội dung.
 2. **Khó bảo trì và gây "Tag Soup":** Lồng ghép vô số các thẻ `<table>`, `<tr>`, `<td>` vào nhau khiến code phình to, rối rắm và cực kỳ khó sửa lỗi.
 3. **Mất khả năng Responsive (Thiết kế thích ứng):** Bảng rất cứng nhắc, khó tự động bẻ gãy dòng hay chuyển từ ngang sang dọc khi xem trên điện thoại. Các kỹ thuật hiện đại như Flexbox hoặc CSS Grid xử lý việc này tốt hơn rất nhiều.
+# PHẦN C — SUY LUẬN
+
+## Câu C1 — Thiết kế cấu trúc
+*Nhiệm vụ: Thiết kế bộ khung HTML ngữ nghĩa cho trang Chi tiết sản phẩm.*
+```html
+<!-- Bắt đầu phần Header và Điều hướng chính của trang -->
+<header>
+    <!-- nav: Dùng cho cụm liên kết điều hướng chính (Menu) -->
+    <nav>
+        <ul>
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="/category">Danh mục</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Khối nội dung chính, duy nhất của trang chi tiết -->
+<main>
+    <!-- nav: Cũng dùng cho Breadcrumb vì nó là một dạng điều hướng phụ -->
+    <nav aria-label="breadcrumb">
+        <!-- ol: Dùng danh sách có thứ tự vì breadcrumb có tính phân cấp từ lớn đến nhỏ -->
+        <ol>
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="/dien-thoai">Điện thoại</a></li>
+            <li>iPhone 16</li>
+        </ol>
+    </nav>
+
+    <!-- article: Dùng cho toàn bộ thông tin về 1 sản phẩm độc lập, có ý nghĩa trọn vẹn -->
+    <article>
+        <!-- Khối 1: Hình ảnh sản phẩm -->
+        <section class="product-gallery">
+            <!-- figure: Bao bọc hình ảnh sản phẩm có ý nghĩa minh họa nội dung -->
+            <figure>
+                <img src="main-img.jpg" alt="Ảnh chính iPhone 16">
+                <!-- ul/li: Danh sách các ảnh thu nhỏ (thumbnails) -->
+                <ul>
+                    <li><img src="thumb1.jpg" alt="Góc trái"></li>
+                    <li><img src="thumb2.jpg" alt="Góc phải"></li>
+                </ul>
+            </figure>
+        </section>
+
+        <!-- Khối 2: Thông tin cơ bản (tên, giá, mô tả) -->
+        <section class="product-info">
+            <!-- h1: Tiêu đề quan trọng nhất, tên sản phẩm -->
+            <h1>iPhone 16 Pro Max 256GB</h1>
+            <!-- mark hoặc strong: Nhấn mạnh giá tiền -->
+            <p>Giá: <strong>25.990.000đ</strong></p>
+            <p>Mô tả chi tiết sản phẩm...</p>
+        </section>
+
+        <!-- Khối 3: Bảng thông số kỹ thuật -->
+        <section class="product-specs">
+            <h2>Thông số kỹ thuật</h2>
+            <!-- table: Dùng đúng mục đích trình bày dữ liệu dạng lưới/dòng cột -->
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Màn hình</th>
+                        <td>OLED 6.7 inch</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Khối 4: Khu vực Đánh giá/Bình luận -->
+        <section class="product-reviews">
+            <h2>Đánh giá từ người dùng</h2>
+            <!-- article: Mỗi bình luận của người dùng cũng là một nội dung độc lập -->
+            <article class="review-item">
+                <h3>Người dùng A</h3>
+                <p>Máy mượt, chụp ảnh đẹp!</p>
+            </article>
+        </section>
+    </article>
+
+    <!-- aside: Dành cho nội dung có liên quan nhưng không phải nội dung chính (Sản phẩm tương tự) -->
+    <aside class="related-products">
+        <h2>Sản phẩm tương tự</h2>
+        <ul>
+            <li><a href="#">iPhone 15 Pro</a></li>
+            <li><a href="#">Samsung S24 Ultra</a></li>
+        </ul>
+    </aside>
+</main>
+
+<!-- footer: Phần chân trang, chứa thông tin bản quyền, liên hệ chung -->
+<footer>
+    <p>&copy; 2026 ShopTLU. All rights reserved.</p>
+</footer>
+```
+
+---
+
+## Câu C2 — So sánh & Tranh luận
+*Nhiệm vụ: Phản biện quan điểm "Chỉ cần dùng `<div>` là đủ, không cần HTML ngữ nghĩa".*
+
+Chào cậu, tớ hiểu lý do cậu thích dùng thẻ `<div>` kết hợp CSS class vì nó mang lại cảm giác nhanh gọn và dễ kiểm soát giao diện. Tuy nhiên, nếu xây dựng một dự án thực tế, việc bỏ qua HTML ngữ nghĩa (Semantic HTML) sẽ mang lại nhiều rủi ro lớn về mặt kỹ thuật:
+
+**Thứ nhất, về mặt SEO (Tối ưu hóa công cụ tìm kiếm):** Googlebot là những cỗ máy không "nhìn" thấy giao diện đẹp hay xấu, chúng chỉ đọc mã HTML. Nếu cậu dùng một "rừng" thẻ `<div>`, Googlebot sẽ coi mọi nội dung là ngang hàng nhau và không biết đâu là nội dung cốt lõi. Ngược lại, khi dùng các thẻ `<main>`, `<article>`, `<h1>`, chúng ta đang "chỉ điểm" cho Google biết đâu là phần quan trọng nhất để ưu tiên xếp hạng khi người dùng tìm kiếm.
+
+**Thứ hai, về Accessibility (Trợ năng):** Người khiếm thị sử dụng Screen Readers (trình đọc màn hình) để lướt web. Phần mềm này dựa vào cấu trúc ngữ nghĩa để điều hướng. Ví dụ, nó cho phép người dùng ấn phím tắt để nhảy thẳng đến `<main>` (bỏ qua menu dài dòng), hoặc liệt kê tất cả các `<h2>`, `<h3>` để xem tóm tắt trang. Thẻ `<div>` hoàn toàn vô dụng trong trường hợp này.
+
+**Một ví dụ cụ thể:** Nếu cậu tạo nút bấm bằng `<div class="btn">Click</div>`, cậu phải viết thêm Javascript để bắt sự kiện phím `Enter` và `Space`, đồng thời bổ sung các thuộc tính `aria-*` để máy đọc hiểu đó là nút. Nhưng nếu cậu dùng thẻ chuẩn `<button>Click</button>`, trình duyệt đã tự động xử lý toàn bộ các thao tác bàn phím và trợ năng đó từ trong trứng nước, tiết kiệm rất nhiều code.
+
+**Tuy nhiên, `<div>` không hề sai:** Tớ hoàn toàn đồng ý việc sử dụng thẻ `<div>` khi chúng ta cần một **container (vỏ bọc) thuần túy để chia bố cục layout** bằng CSS Flexbox hoặc Grid, mà bản thân khối đó không mang ý nghĩa nội dung gì (ví dụ: bọc 2 cột thành 1 hàng). 
+
+Tóm lại, `<div>` dùng cho "Giao diện", còn Semantic HTML dùng cho "Ý nghĩa dữ liệu". Kết hợp cả hai mới là Best Practice cậu ạ!
