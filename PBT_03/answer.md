@@ -1,5 +1,3 @@
-# KẾT QUẢ BÀI TẬP PBT03 - CSS CORE
-
 ## PHẦN A — KIỂM TRA ĐỌC HIỂU
 
 ### Câu A1 (5đ) — 3 Cách nhúng CSS
@@ -24,8 +22,6 @@
 
 **Câu hỏi thêm:** Cách **Nội tuyến (Inline CSS)** sẽ thắng. Vì theo quy tắc Specificity (Độ ưu tiên), các style viết trực tiếp bên trong thẻ được trình duyệt coi là chỉ thị cụ thể nhất nên có điểm cao nhất, tự động ghi đè Internal và External CSS.
 
----
-
 ### Câu A2 (8đ) — CSS Selectors — Dự đoán kết quả
 
 1. `h1`                           → Chọn: **ShopTLU**
@@ -36,8 +32,7 @@
 6. `article > p`                  → Chọn: **25.990.000đ, Mô tả sản phẩm..., 45.990.000đ, Mô tả sản phẩm...**
 7. `a[href="/"]`                  → Chọn: **Home**
 8. `.top-bar.dark h1`             → Chọn: **ShopTLU**
-
----
+<img width="1916" height="978" alt="A2_PBT3" src="https://github.com/user-attachments/assets/6c8b2828-d558-42d3-a071-dd79df5b7f04" />
 
 ### Câu A3 (7đ) — Box Model — Tính toán kích thước
 
@@ -56,7 +51,6 @@
 
 **Nâng cao:** Khoảng cách = 40 + (-10) = **30px** (Tính tổng đại số khi 1 margin dương và 1 margin âm gặp nhau).
 
----
 
 ### Câu A4 (5đ) — Specificity (Độ ưu tiên)
 
@@ -69,7 +63,6 @@
 3. **Thêm style="color: orange;":** Màu **Cam (orange)**. Vì Inline CSS ưu tiên hơn ID.
 4. **Thêm !important vào Rule A:** Màu **Đen (black)**. Vì `!important` bẻ gãy mọi quy tắc tính điểm.
 
-==================================================
 
 ## PHẦN B — THỰC HÀNH CODE
 
@@ -81,7 +74,6 @@
 5. **Descendant selector:** `nav a`, `thead tr`, `figure img`
 6. **Pseudo-class selector:** `:hover`, `:nth-child(even)`
 
----
 
 ### Bài B2 — Box Model Lab
 - **Hộp 1 (content-box):** chiều rộng thực tế = **350px** (đo từ DevTools)
@@ -89,7 +81,6 @@
 - **Giải thích sự khác biệt:** - Với `content-box`, `width` chỉ là chiều rộng của vùng nội dung. Trình duyệt sẽ cộng thêm padding và border vào làm cho hộp phình to ra (300 + 40 + 10 = 350px).
   - Với `border-box`, `width` quy định tổng chiều rộng của cả hộp. Trình duyệt sẽ tự động ép vùng nội dung nhỏ lại để nhường chỗ cho padding và border, giúp tổng kích thước hộp luôn giữ đúng 300px.
 
----
 
 ### Bài B3 — Specificity Battle
 1. **10 rules + specificity score:**
