@@ -52,16 +52,25 @@
 **Nâng cao:** Khoảng cách = 40 + (-10) = **30px** (Tính tổng đại số khi 1 margin dương và 1 margin âm gặp nhau).
 
 
-### Câu A4 (5đ) — Specificity (Độ ưu tiên)
+# Câu A4 - Tính đặc hiệu (Độ ưu tiên)
 
-1. **Tính specificity score:**
-   - Rule A (p): (0, 0, 1)
-   - Rule B (.price): (0, 1, 0)
-   - Rule C (#main-price): (1, 0, 0)
-   - Rule D (p.price): (0, 1, 1)
-2. **Element màu gì?** Màu **Đỏ (red)**. Vì Rule C dùng ID nên điểm ưu tiên cao nhất.
-3. **Thêm style="color: orange;":** Màu **Cam (orange)**. Vì Inline CSS ưu tiên hơn ID.
-4. **Thêm !important vào Rule A:** Màu **Đen (black)**. Vì `!important` bẻ gãy mọi quy tắc tính điểm.
+**1. Điểm đặc hiệu tính toán (a, b, c) cho từng quy tắc:**
+* **Rule A** (`p`): Điểm = **(0, 0, 1)** - (Có 1 Element).
+* **Rule B** (`.price`): Điểm = **(0, 1, 0)** - (Có 1 Class).
+* **Rule C** (`#main-price`): Điểm = **(1, 0, 0)** - (Có 1 ID).
+* **Rule D** (`p.price`): Điểm = **(0, 1, 1)** - (Có 1 Class, 1 Element).
+
+**2. Element sẽ có màu gì? Giải thích:**
+* **Kết quả:** Phần tử sẽ có **màu đỏ (red)**.
+* **Giải thích:** CSS sẽ ưu tiên áp dụng quy tắc có điểm đặc hiệu cao nhất. Trong 4 quy tắc trên, Rule C (`#main-price`) sử dụng bộ chọn ID nên có điểm cao nhất là (1, 0, 0). Do đó, thuộc tính `color: red` của Rule C sẽ ghi đè các quy tắc còn lại.
+
+**3. Nếu thêm style trực tiếp `<p class="price" id="main-price" style="color: orange;">`:**
+* **Kết quả:** Phần tử sẽ chuyển sang **màu cam (orange)**.
+* **Giải thích:** CSS khai báo trực tiếp trên thẻ (Inline style) có độ ưu tiên cao hơn tất cả các bộ chọn thông thường (bao gồm cả ID, Class, Element) được viết trong file CSS bên ngoài. 
+
+**4. Nếu thêm `!important` vào Quy tắc A (`p { color: black !important; }`):**
+* **Kết quả:** Phần tử sẽ có **màu đen (black)**.
+* **Giải thích:** Từ khóa `!important` là một ngoại lệ phá vỡ mọi quy tắc tính điểm đặc hiệu thông thường. Khi một thuộc tính được gắn `!important`, nó sẽ giành quyền ưu tiên tuyệt đối cao nhất, vượt qua cả bộ chọn ID lẫn Inline style. Vì vậy Rule A sẽ "chiến thắng" tất cả.
 
 
 ## PHẦN B — THỰC HÀNH CODE
