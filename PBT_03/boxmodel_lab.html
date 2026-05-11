@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài B2 - Box Model Lab</title>
+    <link rel="stylesheet" href="boxmodel.css">
+</head>
+<body>
+    <h2>Phần 1: So sánh Content-box và Border-box</h2>
+    <div class="box box-1">
+        Đây là hộp 1 (Content-box). Trình duyệt sẽ cộng dồn padding và border làm hộp phình to ra.
+    </div>
+
+    <div class="box box-2">
+        Đây là hộp 2 (Border-box). Kích thước hộp bị khóa cứng ở 300px, phần nội dung bên trong sẽ tự động co lại.
+    </div>
+
+    <hr>
+
+    <h2>Phần 2: Layout 3 cột</h2>
+    <p>Thử comment/bỏ comment dòng `box-sizing: border-box` trong class .column để xem layout bị vỡ như thế nào.</p>
+    
+    <div class="container">
+        <div class="column sidebar">Sidebar (Trái)</div>
+        <div class="column content">Nội dung chính (Giữa)</div>
+        <div class="column ads">Quảng cáo (Phải)</div>
+    </div>
+</body>
+</html>
