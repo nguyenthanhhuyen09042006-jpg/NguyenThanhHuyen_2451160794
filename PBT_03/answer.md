@@ -1,3 +1,4 @@
+<img width="1918" height="977" alt="B2H1PBT3" src="https://github.com/user-attachments/assets/40f8c441-3f52-44d6-8f96-242e2380df28" />
 ## PHẦN A — KIỂM TRA ĐỌC HIỂU
 
 ### Câu A1 (5đ) — 3 Cách nhúng CSS
@@ -77,7 +78,9 @@
 
 ### Bài B2 — Box Model Lab
 - **Hộp 1 (content-box):** chiều rộng thực tế = **350px** (đo từ DevTools)
+<img width="1918" height="977" alt="B2H1PBT3" src="https://github.com/user-attachments/assets/8d6b4df5-2e88-4798-a046-3581c74baab8" />
 - **Hộp 2 (border-box):** chiều rộng thực tế = **300px** (đo từ DevTools)
+- <img width="1911" height="973" alt="B2H2PBT3" src="https://github.com/user-attachments/assets/3a1b8bbe-b03c-479b-8a1d-0736631bc932" />
 - **Giải thích sự khác biệt:** - Với `content-box`, `width` chỉ là chiều rộng của vùng nội dung. Trình duyệt sẽ cộng thêm padding và border vào làm cho hộp phình to ra (300 + 40 + 10 = 350px).
   - Với `border-box`, `width` quy định tổng chiều rộng của cả hộp. Trình duyệt sẽ tự động ép vùng nội dung nhỏ lại để nhường chỗ cho padding và border, giúp tổng kích thước hộp luôn giữ đúng 300px.
 
