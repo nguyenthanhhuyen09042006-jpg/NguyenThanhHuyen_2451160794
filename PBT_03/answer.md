@@ -1,4 +1,3 @@
-<img width="1918" height="977" alt="B2H1PBT3" src="https://github.com/user-attachments/assets/40f8c441-3f52-44d6-8f96-242e2380df28" />
 ## PHẦN A — KIỂM TRA ĐỌC HIỂU
 
 ### Câu A1 (5đ) — 3 Cách nhúng CSS
