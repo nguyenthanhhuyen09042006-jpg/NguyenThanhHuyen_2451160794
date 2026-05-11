@@ -99,29 +99,10 @@
      + 
 #### Phần 2
 - **Sử dụng boder-box**
+  
 <img width="1912" height="977" alt="B2P2SD" src="https://github.com/user-attachments/assets/62be4bd2-fa46-4bb3-95c0-558812799d0f" />
+
 - **Không sử dụng boder-box**
+  
 <img width="1918" height="980" alt="B2P2KSD" src="https://github.com/user-attachments/assets/ed170e48-a1a8-4369-8785-769e33c1eb1b" />
 
-### Bài B3 — Specificity Battle
-1. **10 rules + specificity score:**
-   - `* { color: black; }` -> Điểm: (0,0,0)
-   - `p { color: gray; }` -> Điểm: (0,0,1)
-   - `.text { color: yellow; }` -> Điểm: (0,1,0)
-   - `.highlight { color: pink; }` -> Điểm: (0,1,0)
-   - `p.text { color: orange; }` -> Điểm: (0,1,1)
-   - `p.highlight { color: purple; }` -> Điểm: (0,1,1)
-   - `.text.highlight { color: brown; }` -> Điểm: (0,2,0)
-   - `p.text.highlight { color: cyan; }` -> Điểm: (0,2,1)
-   - `#demo { color: blue; }` -> Điểm: (1,0,0)
-   - `#demo.highlight { color: red; }` -> Điểm: (1,1,0)
-
-2. **Element hiển thị màu gì? Tại sao?**
-   - Hiển thị màu **Đỏ (red)**. 
-   - Giải thích: Vì rule `#demo.highlight` có chứa ID kết hợp với Class nên cho ra điểm Specificity (1,1,0) - điểm số cao nhất trong tất cả các rules được viết.
-
-3. *(Screenshot đã được lưu trong thư mục screenshots/)*
-
-4. **Thay đổi thứ tự rules trong file CSS, kết quả có đổi không?**
-   - Kết quả **KHÔNG** đổi.
-   - Giải thích: Trình duyệt áp dụng màu dựa trên điểm Specificity trước tiên. Yếu tố thứ tự trên/dưới chỉ được đem ra xét duyệt khi 2 rules có ĐIỂM BẰNG NHAU. Vì `#demo.highlight` đang có điểm cao nhất một cách tuyệt đối, nên dù nằm ở đâu trong file, nó vẫn chiến thắng.
