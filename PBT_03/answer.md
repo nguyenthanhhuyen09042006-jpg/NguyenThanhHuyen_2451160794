@@ -134,3 +134,44 @@
 * **Giải thích:** Trong CSS, quyền ưu tiên được quyết định theo 2 yếu tố: Độ ưu tiên (Specificity) và Thứ tự sắp xếp (Order).
     - Thứ tự sắp xếp từ trên xuống dưới chỉ có tác dụng phân thắng bại **KHI VÀ CHỈ KHI** hai quy tắc có **điểm đặc thù bằng nhau** (quy tắc nào viết sau/bên dưới sẽ thắng).
     - Ở bài tập này, 10 quy tắc có 10 mức điểm đặc thù hoàn toàn chênh lệch nhau. Do đó, điểm đặc thù (Specificity) sẽ là yếu tố quyết định 100%. Dù quy tắc số 10 (`p#demo.text.highlight`) bị ném lên dòng đầu tiên của file CSS, nó vẫn có điểm (1, 2, 1) - cao nhất nên nó vẫn chiến thắng mọi quy tắc bên dưới.
+ 
+#### PHẦN C — DEBUG & SUY LUẬN (20 điểm)
+# Câu C1 - Gỡ lỗi bố cục CSS
+
+**1. Tính chiều rộng thực tế của sidebar và content (theo content-box mặc định):**
+Do trình duyệt sử dụng `box-sizing: content-box` theo mặc định, kích thước thực tế của thẻ sẽ bị cộng dồn phần padding và border vào chiều rộng (width) ban đầu:
+
+* **Chiều rộng thực tế của `.sidebar`:**
+  300px (width) + 20px (padding trái) + 20px (padding phải) + 1px (border trái) + 1px (border phải) = **342px**
+* **Chiều rộng thực tế của `.content`:**
+  660px (width) + 30px (padding trái) + 30px (padding phải) + 1px (border trái) + 1px (border phải) = **722px**
+
+**2. Giải thích tại sao bố cục bị hỏng:**
+* Tổng chiều rộng thực tế của cả 2 khối khi đặt cạnh nhau là: `342px + 722px = 1064px`.
+* Tuy nhiên, thẻ bao bọc (container) bên ngoài chỉ có chiều rộng giới hạn là `960px`.
+* Vì `1064px > 960px`, không đủ không gian để chứa cả 2 khối trên cùng một hàng ngang. Do đó, phần tử thứ hai (`.content`) bị tràn và bắt buộc phải rớt xuống dòng mới, làm hỏng bố cục.
+
+**3. Đề xuất 2 cách chỉnh sửa:**
+* **Cách 1 (Sử dụng `border-box`):** Thêm thuộc tính `box-sizing: border-box;` vào cả `.sidebar` và `.content`. Thuộc tính này sẽ ép trình duyệt tính toán lại không gian, tự động trừ hao phần padding và border vào bên trong lõi content. Khi đó, chiều rộng tổng của sidebar vẫn là đúng 300px, content là 660px. Tổng là 960px, vừa khít với container.
+* **Cách 2 (Không dùng `border-box`, tính toán lại `width`):** Nếu bắt buộc giữ nguyên `content-box`, ta phải trừ bớt phần chiều rộng (`width`) ban đầu để chừa chỗ cho padding và border.
+    * Sidebar mới: `width: 300px - 42px (padding+border) = 258px;`
+    * Content mới: `width: 660px - 62px (padding+border) = 598px;`
+
+# Câu C2 - Câu đố xếp tầng
+
+**1. "Sản phẩm A" (h2)**
+* **font-size = 20px**: Phần tử này chịu tác động trực tiếp bởi quy tắc `.card .title { font-size: 20px; }`. Theo quy tắc xếp tầng, thuộc tính được khai báo trực tiếp luôn có độ ưu tiên cao hơn thuộc tính kế thừa từ phần tử cha (`.container` hay `body`).
+* **color = green**: Phần tử này bị tác động bởi 2 quy tắc màu: `#featured .title { color: red; }` (điểm đặc hiệu 1,1,0) và `.highlight { color: green !important; }` (điểm đặc hiệu 0,1,0). Dù bộ chọn chứa ID có điểm đặc hiệu cao hơn, nhưng từ khóa `!important` có sức mạnh phá vỡ mọi quy tắc thông thường, giúp màu `green` giành chiến thắng tuyệt đối.
+
+**2. "Mô tả sản phẩm" (p trong #featured)**
+* **color = blue**: Thẻ `<p>` này bị nhắm trúng bởi bộ chọn `.card p { color: inherit; }`. Giá trị `inherit` bắt buộc phần tử phải kế thừa chính xác màu từ phần tử cha trực tiếp. Phần tử cha của nó là `<div class="card" id="featured">` đang áp dụng quy tắc `.card { color: blue; }`. Vì vậy, thẻ `<p>` nhận màu `blue`.
+
+**3. "Sản phẩm B" (h2)**
+* **font-size = 20px**: Tương tự sản phẩm A, thẻ này có class `.title` và nằm bên trong thẻ có class `.card`, nên nhận thuộc tính từ `.card .title { font-size: 20px; }`.
+* **color = blue**: Thẻ `<h2 class="title">` này KHÔNG bị tác động bởi bất kỳ quy tắc chỉ định màu sắc trực tiếp nào (vì nó không nằm trong `#featured` và cũng không có class `.highlight`). Do đó, nó sử dụng cơ chế kế thừa mặc định của CSS để lấy màu từ thẻ cha. Thẻ cha `.card` có `color: blue`, nên chữ "Sản phẩm B" có màu `blue`.
+
+**4. "Mô tả sản phẩm B" (p.highlight)**
+* **color = green**: Thẻ này chịu sự cạnh tranh giữa bộ chọn `.card p { color: inherit; }` và `.highlight { color: green !important; }`. Lại một lần nữa, quy tắc chứa `!important` ưu tiên cao nhất, lập tức ghi đè lệnh kế thừa (`inherit`) để hiển thị màu xanh lá (`green`).
+
+**5. Ảnh chụp màn hình kết quả**
+<img width="1915" height="972" alt="C2PBT3" src="https://github.com/user-attachments/assets/4c55898d-14bd-4bd0-b623-11765211c3e5" />
