@@ -33,6 +33,7 @@
 7. `a[href="/"]`                  → Chọn: **Home**
 8. `.top-bar.dark h1`             → Chọn: **ShopTLU**
 <img width="1916" height="978" alt="A2_PBT3" src="https://github.com/user-attachments/assets/6c8b2828-d558-42d3-a071-dd79df5b7f04" />
+
 ### Câu A3 (7đ) — Box Model — Tính toán kích thước
 
 **Trường hợp 1: content-box (mặc định)**
