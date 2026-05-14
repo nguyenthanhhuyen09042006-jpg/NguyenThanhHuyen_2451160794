@@ -95,3 +95,60 @@
 .portfolio-item:hover .portfolio-info h3 {
     color: var(--primary-color);
 }
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none; /* Bình thường ẩn đi không cho click trúng */
+    transition: opacity 0.4s ease;
+}
+
+.lightbox-content {
+    max-width: 85%;
+    max-height: 80%;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    border: 4px solid var(--bg-white);
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.lightbox-content p {
+    color: var(--bg-white);
+    font-size: 1.1rem;
+}
+
+/* Nút tắt dấu X */
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: var(--bg-white);
+    font-size: 40px;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+/
+.lightbox-overlay:target {
+    opacity: 1;
+    pointer-events: auto; 
+}
+
+.lightbox-overlay:target .lightbox-content {
+    transform: scale(1); 
+}
