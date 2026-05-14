@@ -1,0 +1,74 @@
+.portfolio-section {
+    padding: 80px 20px;
+    background-color: var(--bg-light);
+    text-align: center;
+}
+
+.portfolio-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.portfolio-title span {
+    color: var(--primary-color);
+}
+
+.portfolio-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 50px;
+}
+
+/* Bố cục Responsive Grid theo chuẩn Troubleshooting của đề bài */
+.portfolio-grid {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    /* Mặc định trên Mobile: Tự động co giãn 1 cột đầy màn hình */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.portfolio-item {
+    background-color: var(--bg-white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.portfolio-img-wrapper {
+    width: 100%;
+    /* Ép tỉ lệ ảnh cố định theo chuẩn CSS hiện đại */
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+}
+
+.portfolio-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.portfolio-info {
+    padding: 20px;
+}
+
+.portfolio-info h3 {
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.portfolio-info p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Điều chỉnh số lượng cột chính xác trên các breakpoint lớn hơn */
+@media (min-width: 768px) {
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); } /* Máy tính bảng: 2 cột */
+}
+
+@media (min-width: 1024px) {
+    .portfolio-grid { grid-template-columns: repeat(3, 1fr); } /* Desktop: 3 cột */
+}
