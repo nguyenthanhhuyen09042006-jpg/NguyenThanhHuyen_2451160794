@@ -29,3 +29,16 @@
     margin-bottom: 15px;
     text-align: justify;
 }
+/* 💻 Điều chỉnh Responsive Breakpoints cho màn hình từ Lớn (Máy tính, Tablet ngang) */
+@media (min-width: 992px) {
+    .about-container {
+        /* Chuyển thành layout 2 cột bằng nhau */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 80px;
+        align-items: center;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+}
