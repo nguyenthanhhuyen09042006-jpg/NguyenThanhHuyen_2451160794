@@ -72,3 +72,26 @@
 @media (min-width: 1024px) {
     .portfolio-grid { grid-template-columns: repeat(3, 1fr); } /* Desktop: 3 cột */
 }
+
+/* 🕶️ Hover Zoom Effects */
+.portfolio-item a {
+    display: block;
+}
+
+.portfolio-img-wrapper img {
+    /* Đặt transition ở trạng thái gốc để hiệu ứng mượt cả khi đưa chuột ra */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.portfolio-item:hover .portfolio-img-wrapper img {
+    /* Phóng to ảnh 1.08 lần khi hover */
+    transform: scale(1.08);
+}
+
+.portfolio-info h3 {
+    transition: color var(--transition-fast);
+}
+
+.portfolio-item:hover .portfolio-info h3 {
+    color: var(--primary-color);
+}
