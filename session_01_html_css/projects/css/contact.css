@@ -1,0 +1,73 @@
+.contact-section {
+    padding: 80px 20px;
+    background-color: var(--bg-white);
+    text-align: center;
+}
+
+.contact-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-title span {
+    color: var(--primary-color);
+}
+
+.contact-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* 📱 Responsive form inputs theo chỉ dẫn Troubleshooting */
+input, textarea {
+    width: 100%;
+    min-height: 44px; /* Tránh bị quá nhỏ trên màn hình cảm ứng di động */
+    font-size: 16px;
+    padding: 10px 15px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ✨ CSS Validation UI - Trạng thái Focus */
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* Khi người dùng gõ sai định dạng Email hoặc bỏ trống trường Bắt buộc */
+input:focus:invalid, textarea:focus:invalid {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.btn-block {
+    width: 100%;
+    text-align: center;
+}
