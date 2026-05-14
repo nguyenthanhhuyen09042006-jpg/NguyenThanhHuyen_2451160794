@@ -1,0 +1,36 @@
+.main-footer {
+    background-color: #111827; /* Màu tối huyền bí sang trọng */
+    color: #9ca3af;
+    padding: 30px 20px;
+}
+
+.footer-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* Mặc định xếp dọc trên Mobile */
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-socials a {
+    transition: var(--transition-fast);
+}
+
+.footer-socials a:hover {
+    color: var(--bg-white);
+}
+
+/* 💻 Bố cục ngang mượt mà khi lên màn hình máy tính rộng */
+@media (min-width: 768px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
