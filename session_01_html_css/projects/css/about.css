@@ -1,0 +1,31 @@
+.about-section {
+    padding: 80px 20px;
+    background-color: var(--bg-white);
+}
+
+/* 📱 Bố cục Mobile-first: Mặc định xếp chồng thành 1 cột */
+.about-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    position: relative;
+}
+
+.section-title span {
+    color: var(--primary-color);
+}
+
+.about-text {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    text-align: justify;
+}
