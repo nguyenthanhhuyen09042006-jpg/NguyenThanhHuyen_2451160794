@@ -1,4 +1,10 @@
 /* Reset CSS cơ bản */
+html {
+    /* Tạo hiệu ứng cuộn mượt mà trượt dần khi bấm vào các liên kết menu */
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height); /* Ngăn nội dung bị che khuất bởi Header Sticky */
+}
+
 * {
     margin: 0;
     padding: 0;
