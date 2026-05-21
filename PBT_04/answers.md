@@ -18,6 +18,65 @@
   + Positioned (Đã thiết lập vị trí): Là bất kỳ phần tử nào có thuộc tính position khác với static.
   + Nearest (Gần nhất): Nếu cả cha và ông đều có position: relative, phần tử con absolute sẽ bám theo cha (vì cha gần nó hơn).
 
+## Câu C2 (10đ) — Debug Flexbox
+Trường hợp 1:
+Dự đoán: 4 items nằm trên 1 hàng duy nhất. Vì .item có flex: 1, chúng sẽ tự động chia đều độ rộng của container (mỗi item chiếm 25%).
+
+Sơ đồ:
+
+Plaintext
+┌───────────┬───────────┬───────────┬───────────┐
+│  Item 1   │  Item 2   │  Item 3   │  Item 4   │
+└───────────┴───────────┴───────────┴───────────┘
+Trường hợp 2:
+Dự đoán: Có tổng cộng 3 hàng, mỗi hàng 2 cột. Do width: 45% + margin: 2.5% * 2 (trái/phải) = 50% mỗi item. Nên 1 hàng chỉ chứa vừa khít 2 items. 6 items sẽ chia đều thành 3 hàng.
+
+Sơ đồ:
+
+Plaintext
+┌───────────────┐ ┌───────────────┐
+│    Item 1     │ │    Item 2     │
+└───────────────┘ └───────────────┘
+┌───────────────┐ ┌───────────────┐
+│    Item 3     │ │    Item 4     │
+└───────────────┘ └───────────────┘
+┌───────────────┐ ┌───────────────┐
+│    Item 5     │ │    Item 6     │
+└───────────────┘ └───────────────┘
+Trường hợp 3:
+Dự đoán: 3 items nằm trên 1 hàng. Item 1 dính sát lề trái, Item 3 dính sát lề phải, Item 2 nằm chính giữa chính xác. Cả 3 căn giữa hoàn hảo theo chiều dọc.
+
+Sơ đồ:
+
+Plaintext
+┌───────────────────────────────────────────────┐
+│ ┌────────┐        ┌────────┐        ┌────────┐ │
+│ │ Item 1 │        │ Item 2 │        │ Item 3 │ │
+│ └────────┘        └────────┘        └────────┘ │
+└───────────────────────────────────────────────┘
+Trường hợp 4:
+Dự đoán: 3 items nằm trên 1 hàng. Item 1 và 3 có độ rộng cố định 200px. Item 2 ở giữa co giãn linh hoạt chiếm trọn phần không gian còn lại (1fr). Giữa chúng có khoảng cách 20px.
+
+Sơ đồ:
+
+Plaintext
+┌───────────┐      ┌─────────────────────┐      ┌───────────┐
+│Item1(200p)│<-20->│    Item 2 (1fr)     │<-20->│Item3(200p)│
+└───────────┘      └─────────────────────┘      └───────────┘
+Trường hợp 5:
+Dự đoán: Gồm 3 hàng. Hàng 1 (Item 1, 2, 3), Hàng 2 (Item 4, 5, 6), Hàng 3 chứa duy nhất Item 7 nằm ở cột đầu tiên bên trái, để trống 2 cột còn lại.
+
+Sơ đồ:
+
+Plaintext
+┌───────────┬───────────┬───────────┐
+│  Item 1   │  Item 2   │  Item 3   │
+├───────────┼───────────┼───────────┤
+│  Item 4   │  Item 5   │  Item 6   │
+├───────────┼───────────┴───────────┘
+│  Item 7   │ (Trống)     (Trống)
+└───────────┘
+
 # PHẦN C — SUY LUẬN (20 điểm)
 ## Câu C1 (10đ) — Flexbox vs Grid: Khi nào dùng gì?
 **1. Navigation bar ngang (logo + menu + buttons)**
