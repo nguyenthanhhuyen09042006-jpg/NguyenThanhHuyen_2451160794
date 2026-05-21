@@ -1,0 +1,54 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+body { padding: 20px; background: #f1f3f5; }
+
+/* Thiết lập Layout lớn bằng CSS Grid Area */
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-areas: 
+        "header header header"
+        "hero hero hero"
+        "sidebar main ads"
+        "footer footer footer";
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Định nghĩa vùng cho từng Element */
+.header { grid-area: header; background: #343a40; color: white; padding: 20px; text-align: center; font-weight: bold;}
+.footer { grid-area: footer; background: #343a40; color: white; padding: 20px; text-align: center; }
+
+.hero { 
+    grid-area: hero; 
+    background: linear-gradient(45deg, #ff7675, #6c5ce7); 
+    color: white; 
+    height: 200px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.sidebar { grid-area: sidebar; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+.ads { grid-area: ads; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+.ads-box { height: 100%; background: #ffeaa7; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #d63031;}
+
+/* Grid con bên trong Main Content (3 cột) */
+.main-content { 
+    grid-area: main; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Tự responsive co giãn */
+    gap: 15px;
+}
+
+.inner-card {
+    background: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    font-weight: bold;
+    color: #495057;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
