@@ -28,6 +28,7 @@ Plaintext
 ┌───────────┬───────────┬───────────┬───────────┐
 │  Item 1   │  Item 2   │  Item 3   │  Item 4   │
 └───────────┴───────────┴───────────┴───────────┘
+
 Trường hợp 2:
 Dự đoán: Có tổng cộng 3 hàng, mỗi hàng 2 cột. Do width: 45% + margin: 2.5% * 2 (trái/phải) = 50% mỗi item. Nên 1 hàng chỉ chứa vừa khít 2 items. 6 items sẽ chia đều thành 3 hàng.
 
@@ -43,6 +44,7 @@ Plaintext
 ┌───────────────┐ ┌───────────────┐
 │    Item 5     │ │    Item 6     │
 └───────────────┘ └───────────────┘
+
 Trường hợp 3:
 Dự đoán: 3 items nằm trên 1 hàng. Item 1 dính sát lề trái, Item 3 dính sát lề phải, Item 2 nằm chính giữa chính xác. Cả 3 căn giữa hoàn hảo theo chiều dọc.
 
@@ -54,6 +56,7 @@ Plaintext
 │ │ Item 1 │        │ Item 2 │        │ Item 3 │ │
 │ └────────┘        └────────┘        └────────┘ │
 └───────────────────────────────────────────────┘
+
 Trường hợp 4:
 Dự đoán: 3 items nằm trên 1 hàng. Item 1 và 3 có độ rộng cố định 200px. Item 2 ở giữa co giãn linh hoạt chiếm trọn phần không gian còn lại (1fr). Giữa chúng có khoảng cách 20px.
 
@@ -63,6 +66,7 @@ Plaintext
 ┌───────────┐      ┌─────────────────────┐      ┌───────────┐
 │Item1(200p)│<-20->│    Item 2 (1fr)     │<-20->│Item3(200p)│
 └───────────┘      └─────────────────────┘      └───────────┘
+
 Trường hợp 5:
 Dự đoán: Gồm 3 hàng. Hàng 1 (Item 1, 2, 3), Hàng 2 (Item 4, 5, 6), Hàng 3 chứa duy nhất Item 7 nằm ở cột đầu tiên bên trái, để trống 2 cột còn lại.
 
@@ -76,6 +80,7 @@ Plaintext
 ├───────────┼───────────┴───────────┘
 │  Item 7   │ (Trống)     (Trống)
 └───────────┘
+
 
 # PHẦN C — SUY LUẬN (20 điểm)
 ## Câu C1 (10đ) — Flexbox vs Grid: Khi nào dùng gì?
