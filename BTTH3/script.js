@@ -7,13 +7,15 @@ const formModal = document.getElementById('formModal');
 const formTitle = document.getElementById('formTitle');
 const notification = document.getElementById('notification');
 const studentForm = document.getElementById('studentForm');
-const studentTableBody = document.getElementById('studentTableBody'); // Lấy phần thân bảng
+const studentTableBody = document.getElementById('studentTableBody');
+const totalStudentsSpan = document.getElementById('totalStudents');
+const averageScoreSpan = document.getElementById('averageScore');
 
 // ==========================================
-// 2. BIẾN LƯU TRỮ (GIAI ĐOẠN 4)
+// 2. BIẾN LƯU TRỮ
 // ==========================================
-// Mảng chứa danh sách sinh viên
 let students = []; 
+let editIndex = -1; // -1 nghĩa là đang ở chế độ Thêm mới. Nếu >= 0 là đang Sửa.
 
 // ==========================================
 // 3. CÁC HÀM XỬ LÝ CHÍNH
@@ -27,16 +29,34 @@ function openModal() {
 function closeModal() {
     formModal.classList.remove('show');
     studentForm.reset(); 
+    editIndex = -1; // Đảm bảo khi đóng form thì luôn reset về trạng thái Thêm mới
 }
 
-// Hàm mới: Vẽ lại bảng dữ liệu
-function renderTable() {
-    studentTableBody.innerHTML = ''; // Xóa sạch dữ liệu cũ trong bảng để vẽ lại từ đầu
+// Cập nhật thống kê
+function updateStatistics() {
+    totalStudentsSpan.innerText = students.length;
+    
+    if (students.length === 0) {
+        averageScoreSpan.innerText = '0.0';
+        return;
+    }
 
-    // Duyệt qua mảng sinh viên, mỗi sinh viên tạo 1 dòng <tr>
+    let totalScore = 0;
+    students.forEach(function(student) {
+        totalScore += parseFloat(student.score); // Chuyển chuỗi thành số thực để cộng
+    });
+    
+    let avg = totalScore / students.length;
+    averageScoreSpan.innerText = avg.toFixed(2); // Làm tròn 2 chữ số thập phân
+}
+
+// Vẽ lại bảng dữ liệu
+function renderTable() {
+    studentTableBody.innerHTML = ''; 
     students.forEach(function(student, index) {
         const tr = document.createElement('tr');
         
+        // Truyền trực tiếp index vào hàm editStudent và deleteStudent
         tr.innerHTML = `
             <td>${student.id}</td>
             <td>${student.name}</td>
@@ -45,12 +65,42 @@ function renderTable() {
             <td>${student.score}</td>
             <td>${student.email}</td>
             <td>
-                <button>Sửa</button>
-                <button>Xóa</button>
+                <button onclick="editStudent(${index})">Sửa</button>
+                <button onclick="deleteStudent(${index})">Xóa</button>
             </td>
         `;
-        studentTableBody.appendChild(tr); // Thêm dòng vào bảng
+        studentTableBody.appendChild(tr); 
     });
+
+    updateStatistics(); // Gọi hàm cập nhật thống kê mỗi khi vẽ lại bảng
+}
+
+// Hàm Xóa sinh viên
+function deleteStudent(index) {
+    // Hiển thị hộp thoại xác nhận
+    if (confirm("Bạn có chắc chắn muốn xóa sinh viên này?")) {
+        students.splice(index, 1); // Xóa 1 phần tử tại vị trí index
+        renderTable();
+        notification.innerText = "Đã xóa sinh viên thành công!";
+    }
+}
+
+// Hàm Sửa sinh viên (đẩy dữ liệu lên form)
+function editStudent(index) {
+    const student = students[index]; // Lấy sinh viên cần sửa
+    
+    // Nạp dữ liệu lên các ô input
+    document.getElementById('studentId').value = student.id;
+    document.getElementById('fullName').value = student.name;
+    document.getElementById('dob').value = student.dob;
+    document.getElementById('className').value = student.className;
+    document.getElementById('score').value = student.score;
+    document.getElementById('email').value = student.email;
+
+    // Đổi trạng thái và mở form
+    editIndex = index; // Ghi nhớ vị trí đang sửa
+    formTitle.innerText = "Cập nhật sinh viên";
+    formModal.classList.add('show');
 }
 
 // ==========================================
@@ -59,29 +109,29 @@ function renderTable() {
 btnOpenForm.addEventListener('click', openModal);
 btnCloseForm.addEventListener('click', closeModal);
 
-// Sự kiện khi bấm "Lưu" form
 studentForm.addEventListener('submit', function(event) {
     event.preventDefault(); 
 
-    // 1. Gom tất cả dữ liệu từ các ô input thành 1 object
     const newStudent = {
         id: document.getElementById('studentId').value,
         name: document.getElementById('fullName').value,
         dob: document.getElementById('dob').value,
-        className: document.getElementById('className').value, // class là từ khóa của JS nên dùng className
+        className: document.getElementById('className').value, 
         score: document.getElementById('score').value,
         email: document.getElementById('email').value
     };
 
-    // 2. Đẩy object sinh viên mới vào mảng
-    students.push(newStudent);
+    // Kiểm tra xem đang Thêm hay Sửa
+    if (editIndex === -1) {
+        // Chế độ Thêm
+        students.push(newStudent);
+        notification.innerText = `Đã thêm thành công sinh viên: ${newStudent.name}`;
+    } else {
+        // Chế độ Sửa
+        students[editIndex] = newStudent; // Ghi đè dữ liệu mới vào vị trí cũ
+        notification.innerText = `Đã cập nhật thành công sinh viên: ${newStudent.name}`;
+    }
 
-    // 3. Gọi hàm vẽ lại bảng để cập nhật giao diện
     renderTable();
-
-    // 4. Hiển thị thông báo
-    notification.innerText = `Đã thêm thành công sinh viên: ${newStudent.name}`;
-    
-    // 5. Đóng form
     closeModal();
 });
