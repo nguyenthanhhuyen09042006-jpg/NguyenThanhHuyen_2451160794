@@ -1,5 +1,5 @@
 // ==========================================
-// 1. LẤY PHẦN TỬ DOM
+// 1. LẤY PHẦN TỬ DOM (Giữ nguyên)
 // ==========================================
 const btnOpenForm = document.getElementById('btnOpenForm');
 const btnCloseForm = document.getElementById('btnCloseForm');
@@ -12,14 +12,20 @@ const totalStudentsSpan = document.getElementById('totalStudents');
 const averageScoreSpan = document.getElementById('averageScore');
 
 // ==========================================
-// 2. BIẾN LƯU TRỮ
+// 2. BIẾN LƯU TRỮ (CẬP NHẬT: Đọc từ localStorage)
 // ==========================================
-let students = []; 
-let editIndex = -1; // -1 nghĩa là đang ở chế độ Thêm mới. Nếu >= 0 là đang Sửa.
+// Lấy dữ liệu từ localStorage, nếu chưa có thì dùng mảng rỗng []
+let students = JSON.parse(localStorage.getItem('studentsList')) || []; 
+let editIndex = -1;
 
 // ==========================================
 // 3. CÁC HÀM XỬ LÝ CHÍNH
 // ==========================================
+
+// --- (THÊM MỚI) Hàm lưu dữ liệu xuống LocalStorage ---
+function saveStudents() {
+    localStorage.setItem('studentsList', JSON.stringify(students));
+}
 
 function openModal() {
     formTitle.innerText = "Thêm sinh viên"; 
@@ -29,11 +35,11 @@ function openModal() {
 function closeModal() {
     formModal.classList.remove('show');
     studentForm.reset(); 
-    editIndex = -1; // Đảm bảo khi đóng form thì luôn reset về trạng thái Thêm mới
+    editIndex = -1;
 }
 
-// Cập nhật thống kê
 function updateStatistics() {
+    // (Giữ nguyên như cũ)
     totalStudentsSpan.innerText = students.length;
     
     if (students.length === 0) {
@@ -43,20 +49,18 @@ function updateStatistics() {
 
     let totalScore = 0;
     students.forEach(function(student) {
-        totalScore += parseFloat(student.score); // Chuyển chuỗi thành số thực để cộng
+        totalScore += parseFloat(student.score); 
     });
     
     let avg = totalScore / students.length;
-    averageScoreSpan.innerText = avg.toFixed(2); // Làm tròn 2 chữ số thập phân
+    averageScoreSpan.innerText = avg.toFixed(2); 
 }
 
-// Vẽ lại bảng dữ liệu
 function renderTable() {
+    // (Giữ nguyên như cũ)
     studentTableBody.innerHTML = ''; 
     students.forEach(function(student, index) {
         const tr = document.createElement('tr');
-        
-        // Truyền trực tiếp index vào hàm editStudent và deleteStudent
         tr.innerHTML = `
             <td>${student.id}</td>
             <td>${student.name}</td>
@@ -71,25 +75,21 @@ function renderTable() {
         `;
         studentTableBody.appendChild(tr); 
     });
-
-    updateStatistics(); // Gọi hàm cập nhật thống kê mỗi khi vẽ lại bảng
+    updateStatistics(); 
 }
 
-// Hàm Xóa sinh viên
 function deleteStudent(index) {
-    // Hiển thị hộp thoại xác nhận
     if (confirm("Bạn có chắc chắn muốn xóa sinh viên này?")) {
-        students.splice(index, 1); // Xóa 1 phần tử tại vị trí index
+        students.splice(index, 1); 
+        saveStudents(); // THÊM MỚI: Lưu lại sau khi xóa
         renderTable();
         notification.innerText = "Đã xóa sinh viên thành công!";
     }
 }
 
-// Hàm Sửa sinh viên (đẩy dữ liệu lên form)
 function editStudent(index) {
-    const student = students[index]; // Lấy sinh viên cần sửa
-    
-    // Nạp dữ liệu lên các ô input
+    // (Giữ nguyên như cũ)
+    const student = students[index]; 
     document.getElementById('studentId').value = student.id;
     document.getElementById('fullName').value = student.name;
     document.getElementById('dob').value = student.dob;
@@ -97,8 +97,7 @@ function editStudent(index) {
     document.getElementById('score').value = student.score;
     document.getElementById('email').value = student.email;
 
-    // Đổi trạng thái và mở form
-    editIndex = index; // Ghi nhớ vị trí đang sửa
+    editIndex = index; 
     formTitle.innerText = "Cập nhật sinh viên";
     formModal.classList.add('show');
 }
@@ -121,17 +120,21 @@ studentForm.addEventListener('submit', function(event) {
         email: document.getElementById('email').value
     };
 
-    // Kiểm tra xem đang Thêm hay Sửa
     if (editIndex === -1) {
-        // Chế độ Thêm
         students.push(newStudent);
         notification.innerText = `Đã thêm thành công sinh viên: ${newStudent.name}`;
     } else {
-        // Chế độ Sửa
-        students[editIndex] = newStudent; // Ghi đè dữ liệu mới vào vị trí cũ
+        students[editIndex] = newStudent; 
         notification.innerText = `Đã cập nhật thành công sinh viên: ${newStudent.name}`;
     }
 
+    saveStudents(); // THÊM MỚI: Lưu lại sau khi thêm hoặc sửa
     renderTable();
     closeModal();
 });
+
+// ==========================================
+// 5. CHẠY KHI TẢI TRANG (THÊM MỚI)
+// ==========================================
+// Gọi hàm renderTable() ngay lập tức để in dữ liệu từ localStorage ra bảng khi vừa mở web
+renderTable();
