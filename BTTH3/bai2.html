@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Công việc Cá nhân</title>
+    <link rel="stylesheet" href="bai2.css">
+</head>
+<body>
+    <h1>Quản lý Công việc Cá nhân</h1>
+
+    <div class="stats">
+        <span>Tổng số: <strong id="totalTasks">0</strong></span> | 
+        <span>Đã hoàn thành: <strong id="completedTasks">0</strong></span> | 
+        <span>Chưa hoàn thành: <strong id="pendingTasks">0</strong></span>
+    </div>
+
+    <div class="controls">
+        <button id="btnOpenTaskForm">Thêm công việc</button>
+        <p id="taskNotification" class="success-msg"></p>
+    </div>
+
+    <div id="taskList" class="task-container">
+        </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <h2 id="taskFormTitle">Thêm công việc mới</h2>
+            <form id="taskForm">
+                <input type="text" id="taskTitle" placeholder="Tiêu đề công việc" required>
+                <textarea id="taskDesc" placeholder="Mô tả ngắn" rows="3"></textarea>
+                <input type="date" id="taskDueDate" required>
+                <select id="taskPriority">
+                    <option value="Thấp">Ưu tiên: Thấp</option>
+                    <option value="Trung bình" selected>Ưu tiên: Trung bình</option>
+                    <option value="Cao">Ưu tiên: Cao</option>
+                </select>
+                
+                <div class="form-actions">
+                    <button type="submit" id="btnSubmitTask">Lưu công việc</button>
+                    <button type="button" id="btnCloseTaskForm">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="bai2.js"></script>
+</body>
+</html>
