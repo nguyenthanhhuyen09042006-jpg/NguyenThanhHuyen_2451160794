@@ -115,8 +115,9 @@ const html = `
 `;
 console.log("=== Kết quả Cách 3 ===");
 console.log(html);
-## PHẦN C
-### Câu C1
+
+## PHẦN C - SUY LUẬN (20 điểm)
+### Câu C1 (10 điểm) - Gỡ lỗi Javascript
 - **Code bị lỗi**
 ```js
 function tinhGiaGiamGia(giaBan, phanTramGiam) {
