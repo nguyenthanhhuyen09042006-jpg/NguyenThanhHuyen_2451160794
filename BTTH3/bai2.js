@@ -9,20 +9,24 @@ const taskNotification = document.getElementById('taskNotification');
 const taskFormTitle = document.getElementById('taskFormTitle');
 const taskList = document.getElementById('taskList');
 
-// Các phần tử thống kê
 const totalTasksSpan = document.getElementById('totalTasks');
 const completedTasksSpan = document.getElementById('completedTasks');
 const pendingTasksSpan = document.getElementById('pendingTasks');
 
 // ==========================================
-// 2. BIẾN LƯU TRỮ
+// 2. BIẾN LƯU TRỮ (Lấy từ LocalStorage)
 // ==========================================
-let tasks = [];
-let editTaskIndex = -1; // -1 là Thêm mới, >=0 là Sửa
+let tasks = JSON.parse(localStorage.getItem('myTasks')) || [];
+let editTaskIndex = -1;
 
 // ==========================================
 // 3. CÁC HÀM XỬ LÝ CHÍNH
 // ==========================================
+
+// --- HÀM MỚI: Lưu dữ liệu ---
+function saveTasks() {
+    localStorage.setItem('myTasks', JSON.stringify(tasks));
+}
 
 function openTaskModal() {
     taskFormTitle.innerText = "Thêm công việc mới";
@@ -35,7 +39,6 @@ function closeTaskModal() {
     editTaskIndex = -1;
 }
 
-// Cập nhật thống kê công việc
 function updateTaskSummary() {
     const total = tasks.length;
     const completed = tasks.filter(task => task.completed === true).length;
@@ -46,14 +49,11 @@ function updateTaskSummary() {
     pendingTasksSpan.innerText = pending;
 }
 
-// Vẽ danh sách công việc ra màn hình
 function renderTasks() {
     taskList.innerHTML = ''; 
 
     tasks.forEach(function(task, index) {
-        // Tạo một thẻ div cho mỗi công việc
         const taskDiv = document.createElement('div');
-        // Nếu công việc đã hoàn thành, thêm class 'completed' để đổi CSS
         taskDiv.className = `task-item ${task.completed ? 'completed' : ''}`;
         
         taskDiv.innerHTML = `
@@ -73,28 +73,26 @@ function renderTasks() {
         taskList.appendChild(taskDiv);
     });
 
-    updateTaskSummary(); // Cập nhật thống kê
+    updateTaskSummary(); 
 }
 
-// Hàm Xóa công việc
 function deleteTask(index) {
     if (confirm("Xóa công việc này nhé?")) {
         tasks.splice(index, 1);
+        saveTasks(); // Lưu sau khi xóa
         renderTasks();
         taskNotification.innerText = "Đã xóa công việc!";
     }
 }
 
-// Hàm Đổi trạng thái hoàn thành
 function toggleTaskStatus(index) {
-    tasks[index].completed = !tasks[index].completed; // Đảo ngược trạng thái true/false
+    tasks[index].completed = !tasks[index].completed; 
+    saveTasks(); // Lưu sau khi đổi trạng thái
     renderTasks();
 }
 
-// Hàm Sửa công việc
 function editTask(index) {
     const task = tasks[index];
-    
     document.getElementById('taskTitle').value = task.title;
     document.getElementById('taskDesc').value = task.desc;
     document.getElementById('taskDueDate').value = task.dueDate;
@@ -119,19 +117,25 @@ taskForm.addEventListener('submit', function(event) {
         desc: document.getElementById('taskDesc').value,
         dueDate: document.getElementById('taskDueDate').value,
         priority: document.getElementById('taskPriority').value,
-        completed: false // Mặc định khi mới tạo là chưa hoàn thành
+        completed: false 
     };
 
     if (editTaskIndex === -1) {
         tasks.push(newTask);
         taskNotification.innerText = "Đã thêm công việc!";
     } else {
-        // Giữ lại trạng thái completed cũ khi sửa thông tin
         newTask.completed = tasks[editTaskIndex].completed; 
         tasks[editTaskIndex] = newTask;
         taskNotification.innerText = "Đã cập nhật công việc!";
     }
 
+    saveTasks(); // Lưu sau khi thêm/sửa
     renderTasks();
     closeTaskModal();
 });
+
+// ==========================================
+// 5. CHẠY KHI TẢI TRANG
+// ==========================================
+// Render dữ liệu từ localStorage ngay khi mở web
+renderTasks();
