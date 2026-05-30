@@ -1,0 +1,14 @@
+:root { --bg: #fff; --text: #333; --card-bg: #f9f9f9; }
+body.dark-mode { --bg: #222; --text: #eee; --card-bg: #333; }
+body { font-family: sans-serif; background: var(--bg); color: var(--text); transition: 0.3s; margin: 0; padding: 20px; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.filters { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+.card { background: var(--card-bg); padding: 15px; border-radius: 8px; text-align: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.card img { max-width: 100%; border-radius: 4px; }
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; }
+.modal-content { background: var(--bg); padding: 20px; border-radius: 8px; width: 300px; position: relative; }
+.close-btn { position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 20px; }
+.hidden { display: none !important; }
+button { cursor: pointer; padding: 8px 12px; }
+button.active { background: #007bff; color: white; border: none; }
