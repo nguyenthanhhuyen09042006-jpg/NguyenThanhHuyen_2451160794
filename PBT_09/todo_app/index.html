@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Todo App</h1>
+            <nav id="filters">
+                <button data-filter="all" class="active">All</button>
+                <button data-filter="active">Active</button>
+                <button data-filter="completed">Completed</button>
+            </nav>
+        </header>
+        <main>
+            <form id="todoForm">
+                <input id="todoInput" type="text" placeholder="What needs to be done?">
+                <button type="submit">Add</button>
+            </form>
+            <ul id="todoList"></ul>
+            <div class="controls">
+                <span id="todoCount">0 items left</span>
+                <button id="clearCompleted">Clear completed</button>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
