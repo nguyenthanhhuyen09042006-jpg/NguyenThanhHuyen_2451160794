@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <style>
+        .hidden { display: none; }
+        .spinner { font-weight: bold; color: blue; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Dự báo thời tiết</h2>
+    <input type="text" id="cityInput" placeholder="Nhập tên thành phố (VD: Hanoi)">
+    <button onclick="searchWeather()">Tìm</button>
+
+    <div id="loading" class="spinner hidden">⏳ Đang tải...</div>
+    <div id="error" class="error hidden"></div>
+    
+    <div id="result" class="hidden">
+        <h3 id="cityName"></h3>
+        <p>Nhiệt độ: <span id="temp"></span>°C</p>
+        <p>Độ ẩm: <span id="humidity"></span>%</p>
+    </div>
+
+    <h3>Lịch sử tìm kiếm</h3>
+    <ul id="historyList"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
