@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyboard App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p>💡 Gợi ý: Dùng <b>Mũi tên Trái/Phải</b> để chuyển ảnh. Bấm phím <b>1, 2, 3</b> để nhảy nhanh. Bấm <b>Space</b> để Auto-play. Bấm <b>Ctrl + K</b> để mở ô tìm kiếm.</p>
+    
+    <div class="gallery" aria-label="Image Gallery" tabindex="0">
+        <h2 id="imageTitle">Ảnh 1</h2>
+        <div id="imageBox">1</div>
+        <p id="playStatus">Đang dừng</p>
+    </div>
+
+    <div id="cmdPalette" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="cmd-content">
+            <input type="text" id="cmdInput" placeholder="Tìm kiếm lệnh..." aria-label="Search commands">
+            <ul id="cmdList">
+                <li tabindex="0">Cài đặt (Settings)</li>
+                <li tabindex="0">Tài khoản (Account)</li>
+                <li tabindex="0">Đăng xuất (Logout)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

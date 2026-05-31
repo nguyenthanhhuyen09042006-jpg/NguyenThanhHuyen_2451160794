@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Sản Phẩm Multimedia</title>
+    <style>
+        img { max-width: 100%; height: auto; }
+        .gallery { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+        figure { border: 1px solid #ddd; padding: 10px; background: #f9f9f9; text-align: center; border-radius: 8px; width: 30%; min-width: 250px;}
+        figcaption { margin-top: 10px; font-weight: bold; }
+        section { margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- SVG Logo -->
+        <svg width="60" height="60" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" stroke="#0056b3" stroke-width="4" fill="#e3f2fd" />
+            <text x="50%" y="55%" text-anchor="middle" font-weight="bold" fill="#0056b3" font-size="24">TLU</text>
+        </svg>
+        <h1>Gian hàng Trải nghiệm (Multimedia)</h1>
+    </header>
+
+    <section>
+        <h2>Hình ảnh nổi bật</h2>
+        <div class="gallery">
+            <figure>
+                <img src="https://via.placeholder.com/400x300.png?text=Galaxy+Z+Fold+6" alt="Điện thoại Samsung Galaxy Z Fold 6" loading="lazy">
+                <figcaption>Samsung Galaxy Z Fold 6</figcaption>
+            </figure>
+            <figure>
+                <img src="https://via.placeholder.com/400x300.png?text=Billiards+Cue" alt="Gậy bida chuẩn thi đấu" loading="lazy">
+                <figcaption>Gậy bida lỗ Carbon nguyên khối</figcaption>
+            </figure>
+            <figure>
+                <img src="https://via.placeholder.com/400x300.png?text=Cookbook" alt="Sách hướng dẫn nấu ăn ngon" loading="lazy">
+                <figcaption>Bí quyết Sườn xào chua ngọt tuyệt đỉnh</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section>
+        <h2>Âm thanh & Video Giới thiệu</h2>
+        
+        <h3>Nhạc nền thư giãn (Audio)</h3>
+        <audio controls>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            Trình duyệt của bạn không hỗ trợ thẻ audio.
+        </audio>
+
+        <h3>Video đập hộp (HTML5 Video)</h3>
+        <video controls width="600" poster="https://via.placeholder.com/600x350.png?text=B%E1%BA%A5m+Play+%C4%91%E1%BB%83+xem">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            <source src="https://www.w3schools.com/html/mov_bbb.webm" type="video/webm">
+            Trình duyệt của bạn không hỗ trợ thẻ video.
+        </video>
+
+        <h3>Đánh giá chi tiết (YouTube)</h3>
+        <iframe width="600" height="350" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </section>
+</body>
+</html>

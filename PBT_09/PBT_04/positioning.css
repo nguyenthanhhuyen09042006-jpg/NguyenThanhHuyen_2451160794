@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+    padding-top: 60px; /* Tránh bị che khuất bởi fixed header */
+}
+
+/* 1. Fixed Header */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000; /* Đảm bảo luôn nằm trên cùng */
+}
+.nav-links a { color: white; margin-left: 15px; text-decoration: none; }
+
+/* Layout Thân */
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    min-height: 2000px; /* Tạo chiều cao lớn để test scroll */
+}
+
+/* 2. Sticky Sidebar */
+.sticky-sidebar {
+    position: sticky;
+    top: 80px; /* Cách mép top 80px khi scroll (nằm dưới header 60px + 20px khoảng cách) */
+    width: 250px;
+    height: 300px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main-content { flex: 1; }
+.product-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+
+/* 3. Badge HOT trên Card */
+.product-card {
+    position: relative; /* Gốc tọa độ cho badge absolute */
+    background: white;
+    width: 220px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.product-img { height: 150px; background: #ddd; margin-bottom: 10px; }
+
+.badge-hot {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* 4. Scroll To Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #007bff;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}

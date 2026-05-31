@@ -1,0 +1,54 @@
+/* Container mặc định của đề bài */
+.container {
+    width: 960px;
+    margin: 0 auto 50px auto;
+    background-color: #f9f9f9;
+}
+
+/* Clearfix: Dùng để chống hiện tượng thẻ container bị xẹp chiều cao khi chứa các phần tử float */
+.container-clear::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Base style cho sidebar và content theo đề bài */
+.sidebar {
+    padding: 20px;
+    border: 1px solid #ccc;
+    float: left;
+    background-color: #ffcdd2;
+}
+
+.content {
+    padding: 30px;
+    border: 1px solid #ccc;
+    float: left;
+    background-color: #c8e6c9;
+}
+
+/* =========================================
+   CÁCH 1: GIẢI QUYẾT BẰNG BORDER-BOX
+========================================= */
+.fix1-sidebar {
+    width: 300px;
+    box-sizing: border-box; /* Ép padding/border vào trong */
+}
+
+.fix1-content {
+    width: 660px;
+    box-sizing: border-box; /* Ép padding/border vào trong */
+}
+
+/* =========================================
+   CÁCH 2: GIẢI QUYẾT BẰNG TÍNH LẠI WIDTH
+========================================= */
+.fix2-sidebar {
+    /* Đã trừ đi 42px (padding và border 2 bên) */
+    width: 258px; 
+}
+
+.fix2-content {
+    /* Đã trừ đi 62px (padding và border 2 bên) */
+    width: 598px; 
+}

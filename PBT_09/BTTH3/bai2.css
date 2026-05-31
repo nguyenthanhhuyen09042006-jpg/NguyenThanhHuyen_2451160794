@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.stats {
+    background: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.success-msg {
+    color: green;
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+/* Kiểu dáng cho danh sách công việc */
+.task-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-item.completed {
+    background-color: #e8f5e9;
+    text-decoration: line-through;
+    color: #666;
+}
+
+/* Modal Popup (Tương tự Bài 1) */
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 400px;
+    border-radius: 8px;
+}
+
+form input, form select, form textarea {
+    display: block;
+    width: 90%;
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

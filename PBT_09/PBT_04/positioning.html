@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Positioning Playground</title>
+    <link rel="stylesheet" href="positioning.css">
+</head>
+<body>
+
+    <header class="fixed-header">
+        <div class="logo">MyLogo</div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sticky-sidebar">
+            <h3>Sidebar Menu</h3>
+            <ul>
+                <li><a href="#">Category 1</a></li>
+                <li><a href="#">Category 2</a></li>
+                <li><a href="#">Category 3</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h2>Product List</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <span class="badge-hot">HOT</span>
+                    <div class="product-img"></div>
+                    <h4>Sản phẩm Premium</h4>
+                    <p>Giá: 1.000.000đ</p>
+                </div>
+                <!-- Copy ra nhiều card để tạo độ dài cuộn trang -->
+                <div class="product-card"><div class="product-img"></div><h4>Sản phẩm thường</h4><p>Giá: 500.000đ</p></div>
+                <div class="product-card"><div class="product-img"></div><h4>Sản phẩm thường</h4><p>Giá: 500.000đ</p></div>
+                <div class="product-card"><div class="product-img"></div><h4>Sản phẩm thường</h4><p>Giá: 500.000đ</p></div>
+                <div class="product-card"><div class="product-img"></div><h4>Sản phẩm thường</h4><p>Giá: 500.000đ</p></div>
+            </div>
+        </main>
+    </div>
+
+    <button class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+</body>
+</html>

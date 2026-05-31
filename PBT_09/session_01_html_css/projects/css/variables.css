@@ -1,0 +1,16 @@
+:root {
+    /* Colors */
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --bg-light: #f3f4f6;
+    --bg-white: #ffffff;
+    
+    /* Layout */
+    --max-width: 1200px;
+    --header-height: 70px;
+    
+    /* Transitions */
+    --transition-fast: all 0.3s ease;
+}

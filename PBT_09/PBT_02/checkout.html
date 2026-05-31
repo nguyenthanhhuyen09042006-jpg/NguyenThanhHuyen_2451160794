@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán Đơn hàng</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        fieldset { margin-bottom: 25px; border-radius: 5px; border: 1px solid #0056b3;}
+        legend { font-weight: bold; color: #0056b3; padding: 0 5px;}
+        .bonus-box { background-color: #e3f2fd; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Trang Thanh Toán & Xác nhận</h1>
+    
+    <form action="#" method="POST">
+        <!-- Bonus 5đ: Datalist -->
+        <div class="bonus-box">
+            <label for="search_item">🔍 Tìm thêm phụ kiện mua kèm (Datalist):</label>
+            <input list="addon_items" id="search_item" name="search_item" placeholder="Gõ để tìm nhanh...">
+            <datalist id="addon_items">
+                <option value="Ốp lưng Z Fold 6">
+                <option value="Lơ bida (Bida chalk)">
+                <option value="Chảo chống dính">
+            </datalist>
+        </div>
+
+        <fieldset>
+            <legend>Phần 1: Giỏ hàng</legend>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Samsung Galaxy Z Fold 6</td>
+                        <td>43.990.000đ</td>
+                        <td>1</td>
+                        <td>43.990.000đ</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Gậy Bida lỗ Carbon</td>
+                        <td>3.500.000đ</td>
+                        <td>1</td>
+                        <td>3.500.000đ</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Chảo chống dính sâu lòng</td>
+                        <td>450.000đ</td>
+                        <td>2</td>
+                        <td>900.000đ</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: right; font-weight: bold;">Tổng thanh toán:</td>
+                        <td style="font-weight: bold; color: #d32f2f;">
+                            <!-- Bonus 5đ: Output -->
+                            <output name="totalPrice">48.390.000đ</output>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            
+            <!-- Bonus 5đ: Meter -->
+            <div style="margin-top: 10px;">
+                <label for="points">Điểm tích lũy thành viên VIP:</label>
+                <meter id="points" value="0.85" min="0" max="1" low="0.3" high="0.8" optimum="0.9"></meter>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Phần 2: Thông tin thanh toán</legend>
+            <div style="margin-bottom: 15px;">
+                <input type="radio" id="cod" name="pay_method" value="cod" checked>
+                <label for="cod">Thanh toán tiền mặt (COD)</label><br>
+                
+                <input type="radio" id="banking" name="pay_method" value="banking">
+                <label for="banking">Chuyển khoản ngân hàng</label><br>
+                
+                <input type="radio" id="momo" name="pay_method" value="momo">
+                <label for="momo">Ví điện tử Momo/ZaloPay</label>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="promo">Mã giảm giá:</label>
+                <input type="text" id="promo" name="promo" pattern="^SALE[0-9]{4}$" placeholder="VD: SALE2026" title="Định dạng đúng: SALE + 4 chữ số (VD: SALE2026)">
+            </div>
+            
+            <div>
+                <label for="notes">Ghi chú đơn hàng:</label><br>
+                <textarea id="notes" name="notes" rows="3" style="width: 100%;" placeholder="Ví dụ: Giao giờ hành chính..."></textarea>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Phần 3: Giao hàng</legend>
+            <div style="margin-bottom: 15px;">
+                <label for="del_date">Ngày giao hàng mong muốn:</label>
+                <input type="date" id="del_date" name="del_date" min="2026-05-01" required>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="del_time">Khung giờ:</label>
+                <select id="del_time" name="del_time">
+                    <option value="morning">Sáng (8h - 12h)</option>
+                    <option value="afternoon">Chiều (14h - 18h)</option>
+                    <option value="evening">Tối (18h - 21h)</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="duration">Thời gian vận chuyển tối đa:</label>
+                <input type="range" id="duration" name="duration" min="1" max="7" step="1" value="3">
+                <span>(Tối đa 7 ngày)</span>
+            </div>
+        </fieldset>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="submit" aria-label="Xác nhận đặt hàng" style="padding: 12px 30px; font-size: 16px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">ĐẶT HÀNG NGAY</button>
+        </div>
+    </form>
+</body>
+</html>

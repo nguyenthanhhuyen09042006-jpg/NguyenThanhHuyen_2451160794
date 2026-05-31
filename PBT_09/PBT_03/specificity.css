@@ -1,0 +1,32 @@
+/* Sắp xếp từ TỪ THẤP ĐẾN CAO theo điểm đặc thù (Specificity) */
+/* Cấu trúc điểm: (Số lượng ID, Số lượng Class/Thuộc tính/Pseudo-class, Số lượng Thẻ/Pseudo-element) */
+
+/* 1. Selector Toàn cục (*) */
+* { color: gray; }                              /* Specificity: 0, 0, 0 */
+
+/* 2. Tag Selector */
+p { color: brown; }                             /* Specificity: 0, 0, 1 */
+
+/* 3. Class Selector */
+.text { color: yellow; }                        /* Specificity: 0, 1, 0 */
+
+/* 4. Tag + Class Selector */
+p.text { color: green; }                        /* Specificity: 0, 1, 1 */
+
+/* 5. Hai Class Selector */
+.text.highlight { color: pink; }                /* Specificity: 0, 2, 0 */
+
+/* 6. Tag + Hai Class Selector */
+p.text.highlight { color: purple; }             /* Specificity: 0, 2, 1 */
+
+/* 7. ID Selector */
+#demo { color: orange; }                        /* Specificity: 1, 0, 0 */
+
+/* 8. Tag + ID Selector */
+p#demo { color: cyan; }                         /* Specificity: 1, 0, 1 */
+
+/* 9. ID + Class Selector */
+#demo.text { color: blue; }                     /* Specificity: 1, 1, 0 */
+
+/* 10. Tag + ID + Hai Class Selector (Cao nhất) */
+p#demo.text.highlight { color: red; }           /* Specificity: 1, 2, 1 */

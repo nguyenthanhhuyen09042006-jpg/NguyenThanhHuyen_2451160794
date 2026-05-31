@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Tùy chỉnh nhỏ để nội dung không bị đè bởi Sidebar cố định */
+        .sidebar {
+            width: 250px;
+            z-index: 100;
+        }
+        .main-content {
+            margin-left: 250px;
+        }
+        /* Phản hồi trên thiết bị di động: ẩn sidebar hoặc đẩy xuống dưới */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+            .main-content {
+                margin-left: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="sidebar position-fixed top-0 start-0 vh-100 bg-dark p-3 text-white">
+        <h4 class="text-center mb-4 fw-bold text-primary">T-Admin</h4>
+        <hr>
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white active border-0 py-2">
+                📊 Tổng quan
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white border-0 py-2">
+                📦 Sản phẩm
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white border-0 py-2">
+                🧾 Đơn hàng
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white border-0 py-2">
+                👥 Khách hàng
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white border-0 py-2">
+                ⚙️ Cài đặt
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content p-4">
+        
+        <header class="d-flex justify-content-between align-items-center bg-white p-3 rounded shadow-sm mb-4">
+            <nav aria-label="breadcrumb" class="mb-0">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Bảng điều khiển</li>
+                </ol>
+            </nav>
+
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    👤 Admin Nguyễn Văn A
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-menu-item dropdown-item" href="#">Hồ sơ cá nhân</a></li>
+                    <li><a class="dropdown-menu-item dropdown-item" href="#">Đổi mật khẩu</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-menu-item dropdown-item text-danger" href="#">Đăng xuất</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <strong>Thành công!</strong> Dữ liệu hệ thống đã được cập nhật đồng bộ vào lúc 08:00 AM.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card bg-primary text-white h-100 shadow-sm">
+                    <div class="card-body">
+                        <h6 class="card-title text-white-50">Doanh Thu Tháng</h6>
+                        <h3 class="card-text">150.000.000đ</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card bg-success text-white h-100 shadow-sm">
+                    <div class="card-body">
+                        <h6 class="card-title text-white-50">Đơn Hàng Mới</h6>
+                        <h3 class="card-text">+1,240</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card bg-warning text-dark h-100 shadow-sm">
+                    <div class="card-body">
+                        <h6 class="card-title text-dark-50">Chờ Xử Lý</h6>
+                        <h3 class="card-text">45 Đơn</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card bg-danger text-white h-100 shadow-sm">
+                    <div class="card-body">
+                        <h6 class="card-title text-white-50">Tỷ Lệ Hủy Đơn</h6>
+                        <h3 class="card-text">1.2%</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-3 mb-4 shadow-sm">
+            <div class="row g-2">
+                <div class="col-12 col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm mã đơn hàng, khách hàng...">
+                        <button class="btn btn-primary" type="button">Tìm kiếm</button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <select class="form-select">
+                        <option selected>Lọc theo trạng thái</option>
+                        <option value="1">Đã thanh toán</option>
+                        <option value="2">Chờ xử lý</option>
+                        <option value="3">Đã hủy</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white fw-bold">
+                Danh Sách Đơn Hàng Gần Đây
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Mã Đơn</th>
+                            <th>Khách Hàng</th>
+                            <th>Sản Phẩm</th>
+                            <th>Tổng Tiền</th>
+                            <th>Trạng Thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>#DH001</strong></td>
+                            <td>Trần Văn B</td>
+                            <td>Điện thoại iPhone 15 Pro Max</td>
+                            <td>32.000.000đ</td>
+                            <td><span class="badge bg-success">Đã giao hàng</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#DH002</strong></td>
+                            <td>Lê Thị C</td>
+                            <td>Tai nghe AirPods Pro</td>
+                            <td>5.500.000đ</td>
+                            <td><span class="badge bg-warning text-dark">Chờ xử lý</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#DH003</strong></td>
+                            <td>Phạm Minh D</td>
+                            <td>Bàn phím cơ Không dây</td>
+                            <td>2.100.000đ</td>
+                            <td><span class="badge bg-success">Đã giao hàng</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card shadow-sm p-3">
+            <h5 class="fw-bold mb-3">Trung tâm trợ giúp (FAQ)</h5>
+            <div class="accordion" id="accordionFAQ">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Làm thế nào để xuất dữ liệu báo cáo sang file Excel?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            Bạn có thể vào mục <strong>Báo cáo tổng quan</strong>, cuộn xuống góc dưới bên phải của bảng dữ liệu và nhấn nút <em>"Xuất Excel"</em> để tải file về máy.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Cách phân quyền cho nhân viên quản lý kho?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            Truy cập vào <strong>Cài đặt > Quản lý thành viên</strong>, chọn tài khoản nhân viên mong muốn và tích chọn vai trò <em>"Quản lý kho"</em>, sau đó ấn lưu.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

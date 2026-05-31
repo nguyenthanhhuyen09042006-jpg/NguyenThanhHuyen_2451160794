@@ -1,0 +1,44 @@
+.about-section {
+    padding: 80px 20px;
+    background-color: var(--bg-white);
+}
+
+/* 📱 Bố cục Mobile-first: Mặc định xếp chồng thành 1 cột */
+.about-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    position: relative;
+}
+
+.section-title span {
+    color: var(--primary-color);
+}
+
+.about-text {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    text-align: justify;
+}
+/* 💻 Điều chỉnh Responsive Breakpoints cho màn hình từ Lớn (Máy tính, Tablet ngang) */
+@media (min-width: 992px) {
+    .about-container {
+        /* Chuyển thành layout 2 cột bằng nhau */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 80px;
+        align-items: center;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+}

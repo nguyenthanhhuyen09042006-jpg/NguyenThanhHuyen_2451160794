@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gỡ lỗi bố cục CSS - Câu C1</title>
+    <link rel="stylesheet" href="debug_layout.css">
+</head>
+<body>
+    <h2>Cách 1: Sửa bằng box-sizing: border-box</h2>
+    <div class="container container-clear">
+        <div class="sidebar fix1-sidebar">
+            Sidebar (Cách 1)
+        </div>
+        <div class="content fix1-content">
+            Content (Cách 1)
+        </div>
+    </div>
+
+    <h2>Cách 2: Sửa bằng cách tính toán lại Width (Không dùng border-box)</h2>
+    <div class="container container-clear">
+        <div class="sidebar fix2-sidebar">
+            Sidebar (Cách 2)
+        </div>
+        <div class="content fix2-content">
+            Content (Cách 2)
+        </div>
+    </div>
+</body>
+</html>

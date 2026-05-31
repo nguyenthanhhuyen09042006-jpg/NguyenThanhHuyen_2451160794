@@ -1,0 +1,41 @@
+.skill-box {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.skill-bar {
+    height: 8px;
+    width: 100%;
+    background-color: var(--bg-light);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-per {
+    display: block;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    width: 0; /* Bắt đầu từ 0 để chạy hiệu ứng animation */
+    animation: fillBars 1.5s forwards cubic-bezier(0.1, 1, 0.1, 1);
+}
+
+/* Định nghĩa độ rộng cho từng kỹ năng */
+.html-per { width: 90%; }
+.css-per { width: 85%; }
+.js-per { width: 70%; }
+
+/* Animation chạy tăng dần từ trái qua phải */
+@keyframes fillBars {
+    from { width: 0; }
+    to { /* Giữ nguyên độ rộng được định nghĩa ở trên nhờ thuộc tính forwards */ }
+}

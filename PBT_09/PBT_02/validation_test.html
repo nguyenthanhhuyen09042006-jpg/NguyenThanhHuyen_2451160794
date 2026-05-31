@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Validation Test - 1 Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .case { margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h2>Test Validation (Gộp trong 1 Form)</h2>
+    
+    <form action="#" method="get">
+        <div class="case">
+            <label>1. Required (Để trống):</label>
+            <input type="text" required value="">
+        </div>
+
+        <div class="case">
+            <label>2. Email (Nhập "abc"):</label>
+            <input type="email" value="abc">
+        </div>
+
+        <div class="case">
+            <label>3. Min/Max (Nhập 15):</label>
+            <input type="number" min="1" max="10" value="15">
+        </div>
+
+        <div class="case">
+            <label>4. Pattern Regex (Nhập "abc123"):</label>
+            <input type="text" pattern="[0-9]{10}" value="abc123">
+        </div>
+
+        <div class="case">
+            <label>5. Minlength (Nhập "123"):</label>
+            <input type="password" minlength="8" value="123">
+        </div>
+
+        <button type="submit" style="padding: 10px 20px; cursor: pointer;">GỬI (SUBMIT)</button>
+    </form>
+</body>
+</html>

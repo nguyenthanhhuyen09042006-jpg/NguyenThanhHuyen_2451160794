@@ -1,0 +1,85 @@
+/* ==========================================================================
+   1. BASE STYLES (Mặc định cho Mobile < 768px)
+   ========================================================================== */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+body { background: #f5f6fa; font-size: 14px; display: flex; flex-direction: column; min-height: 100vh; }
+
+/* Navigation Hamburger Menu sử dụng thuần CSS (Checkbox Hack) */
+.header { background: #2f3640; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: relative; }
+.logo { font-size: 1.3rem; font-weight: bold; }
+.menu-toggle { display: none; }
+.hamburger { font-size: 1.5rem; cursor: pointer; display: block; }
+.nav-menu { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: #2f3640; z-index: 999; }
+.nav-menu a { color: white; padding: 12px 20px; text-decoration: none; border-top: 1px solid #404b5a; }
+.menu-toggle:checked ~ .nav-menu { display: flex; }
+
+/* Layout container chính trên mobile xếp dọc */
+.container { padding: 15px; display: flex; flex-direction: column; gap: 15px; flex: 1; }
+.sidebar { display: none; } /* Ẩn sidebar bộ lọc hoàn toàn trên mobile */
+.ads-bar { display: none; }  /* Ẩn banner quảng cáo hoàn toàn trên mobile */
+
+/* Lưới sản phẩm mobile: 1 cột */
+.product-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+
+/* Product Card Base & Flex Layout bên trong */
+.product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: all 0.3s ease; }
+.card-img-container { overflow: hidden; position: relative; width: 100%; }
+.product-img { width: 100%; height: auto; max-width: 100%; display: block; transition: transform 0.3s ease; }
+.card-info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+.card-title { font-size: 1.1rem; color: #333; margin-bottom: 8px; }
+.card-price { color: #e84118; font-weight: bold; margin-bottom: 15px; }
+.btn-buy { margin-top: auto; padding: 10px; background: #0097e6; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: all 0.2s ease; }
+
+.footer { background: #2f3640; color: white; text-align: center; padding: 15px; margin-top: auto; }
+
+/* Animation fade-in cơ bản */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+
+/* ==========================================================================
+   2. TABLET BREAKPOINT (≥ 768px)
+   ========================================================================== */
+@media (min-width: 768px) {
+    body { font-size: 15px; }
+    
+    /* Hiện sidebar bộ lọc nằm ngang */
+    .sidebar { display: block; background: white; padding: 15px; border-radius: 8px; width: 100%; }
+    .filter-group { display: flex; align-items: center; gap: 10px; }
+    .filter-group select { padding: 6px; width: 200px; }
+    
+    /* Lưới sản phẩm chuyển thành 2 cột */
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ==========================================================================
+   3. DESKTOP BREAKPOINT (≥ 1024px)
+   ========================================================================== */
+@media (min-width: 1024px) {
+    body { font-size: 16px; }
+    
+    /* Trả lại menu ngang cho Desktop, ẩn nút hamburger */
+    .hamburger { display: none; }
+    .nav-menu { display: flex; flex-direction: row; position: static; width: auto; background: transparent; }
+    .nav-menu a { border-top: none; padding: 0 15px; }
+    
+    /* Bố cục chính chia làm 3 vùng độc lập bằng Grid lớn */
+    .container {
+        display: grid;
+        grid-template-columns: 240px 1fr 200px;
+        align-items: start;
+    }
+    
+    /* Khôi phục trạng thái sidebar đứng dọc */
+    .sidebar { width: auto; }
+    .filter-group { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .filter-group select { width: 100%; }
+    
+    /* Xuất hiện hộp quảng cáo */
+    .ads-bar { display: block; background: #fbc531; color: #2f3640; padding: 20px; text-align: center; font-weight: bold; border-radius: 8px; min-height: 300px; }
+    
+    /* Lưới sản phẩm nâng lên thành 4 cột */
+    .product-grid { grid-template-columns: repeat(4, 1fr); }
+}

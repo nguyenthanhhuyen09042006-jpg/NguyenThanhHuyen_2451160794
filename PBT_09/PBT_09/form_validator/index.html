@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Đăng Ký</h2>
+        <form id="regForm">
+            <div class="form-group">
+                <label>Tên</label>
+                <input type="text" id="name" placeholder="2-50 ký tự">
+                <span class="status"></span>
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" id="email" placeholder="example@domain.com">
+                <div class="error-text" id="emailErr"></div>
+            </div>
+            
+            <div class="form-group">
+                <label>Mật khẩu</label>
+                <input type="password" id="password">
+                <div class="progress-bar"><div id="strengthBar"></div></div>
+                <small id="strengthText"></small>
+            </div>
+            
+            <div class="form-group">
+                <label>Xác nhận Mật khẩu</label>
+                <input type="password" id="confirmPass">
+                <span class="status"></span>
+            </div>
+            
+            <div class="form-group">
+                <label>Số điện thoại</label>
+                <input type="text" id="phone" placeholder="09xx-xxx-xxx">
+            </div>
+
+            <button type="submit" id="submitBtn" disabled>Đăng ký ngay</button>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
