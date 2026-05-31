@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-API Dashboard</title>
+    <style>
+        .dashboard { display: flex; gap: 20px; margin-top: 20px; }
+        .widget { border: 2px solid #333; padding: 20px; width: 30%; text-align: center; border-radius: 8px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Bảng điều khiển Đa API</h2>
+    <h3 id="status" style="color: blue;">⏳ Đang tải toàn bộ dữ liệu...</h3>
+    <button onclick="loadDashboard()">Làm mới tất cả</button>
+
+    <div class="dashboard">
+        <div class="widget" id="widget1">Widget 1: Users</div>
+        <div class="widget" id="widget2">Widget 2: Ảnh cún</div>
+        <div class="widget" id="widget3">Widget 3: API Lỗi</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
